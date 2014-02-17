@@ -7,53 +7,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using sort;
 
 namespace _3sort
 {
     class Program
     {
-        
-        static void swap(ref int swapOne, ref int swapTwo)
-        {
-	        int swapSwap = swapOne;
-	        swapOne = swapTwo;
-	        swapTwo = swapSwap;
-        }
-
-        static void qsort(int[] mas, int begin, int end)
-        {
-	        int general = 0;
-	        int i = 0;
-	        for (i = 0; i < end - begin && mas[begin + i] == mas[begin]; i++) ;
-	
-	        if (mas[begin] == mas[begin + i])
-		        return;
-	        else if (mas[begin] < mas[begin + i])
-		        general = mas[begin + i];
-	        else
-		        general = mas[begin];
-	
-	        int left = begin;
-	        int right = end;
-
-	        while (left < right)
-	        {
-		        while (mas[left] < general)
-			        left++;
-		        while (mas[right] >= general)
-			        right--;
-		        if (left >= right)
-			        break;
-		        swap(ref mas[left], ref mas[right]);
-
-		        left++;
-		        right--;
-	        }		
-	        qsort(mas, begin, right);
-	        qsort(mas, left, end);	
-        }
-
-
         static void printMas(int[] mas, int size)
         {
             for (int i = 0; i < size; i++)
@@ -73,7 +32,7 @@ namespace _3sort
 
             Console.WriteLine("Not sort mas:");
             printMas(mas, sizeArray);
-            qsort(mas, 0, sizeArray-1);
+            qSort.qsort(mas, 0, sizeArray - 1);
             Console.WriteLine("Sort mas:");
             printMas(mas, sizeArray);
             
