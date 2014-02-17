@@ -8,15 +8,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using sort;
+using elemntType;
 
 namespace _3sort
 {
     class Program
     {
-        static void printMas(int[] mas, int size)
+        static void printMas(ElementType[] mas, int size)
         {
             for (int i = 0; i < size; i++)
-                Console.Write(" {0} ", mas[i]);
+                mas[i].print();
             Console.WriteLine();
         }
 
@@ -25,10 +26,10 @@ namespace _3sort
             System.Console.WriteLine("Enter size of array:");
             string input = Console.ReadLine();
             int sizeArray  = Convert.ToInt32(input); 
-            int[] mas = new int[sizeArray];
+            ElementType[] mas = new ElementType[sizeArray];
             Random rand = new Random(DateTime.Now.Millisecond);
             for (int i = 0; i < sizeArray; i++)
-                mas[i] = rand.Next(0,100);
+                mas[i] = new ElementType(rand.Next(0,100));
 
             Console.WriteLine("Not sort mas:");
             printMas(mas, sizeArray);

@@ -4,44 +4,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using elemntType;
+
 namespace sort
 {
-    public class qSort
+    // quick sort
+    class qSort
     {
-        static void swap(ref int swapOne, ref int swapTwo)
-        {
-            int swapSwap = swapOne;
-            swapOne = swapTwo;
-            swapTwo = swapSwap;
-        }
-
-
         // quick sort массива mas с begin элемента до end.
-        public static void qsort(int[] mas, int begin, int end)
+        public static void qsort(ElementType[] mas, int begin, int end)
         {
             int general = 0;
             int i = 0;
-            for (i = 0; i < end - begin && mas[begin + i] == mas[begin]; i++) ;
+            for (i = 0; i < end - begin && mas[begin + i].value() == mas[begin].value(); i++) ;
 
-            if (mas[begin] == mas[begin + i])
+            if (mas[begin].value() == mas[begin + i].value())
                 return;
-            else if (mas[begin] < mas[begin + i])
-                general = mas[begin + i];
+            else if (mas[begin].value() < mas[begin + i].value())
+                general = mas[begin + i].value();
             else
-                general = mas[begin];
+                general = mas[begin].value();
 
             int left = begin;
             int right = end;
 
             while (left < right)
             {
-                while (mas[left] < general)
+                while (mas[left].value() < general)
                     left++;
-                while (mas[right] >= general)
+                while (mas[right].value() > general || mas[right].value() == general)
                     right--;
                 if (left >= right)
                     break;
-                swap(ref mas[left], ref mas[right]);
+                ElementType.swap(ref mas[left], ref mas[right]);
 
                 left++;
                 right--;
