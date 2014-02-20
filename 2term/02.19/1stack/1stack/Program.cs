@@ -22,8 +22,7 @@ namespace _1stack
 		        Console.WriteLine("0 - exit"); 
 			    Console.WriteLine("1 - push"); 
 			    Console.WriteLine("2 - pop"); 
-			    //Console.WriteLine("3 - print");
-		        whatDo = Convert.ToInt32(Console.ReadLine());
+			    whatDo = Convert.ToInt32(Console.ReadLine());
 		        if (whatDo == 1)
 		        {
 			        int newNum = 0;
@@ -39,10 +38,8 @@ namespace _1stack
                     else
                         Console.WriteLine("delete element - {0}", value);
 			    }
-		        //if (whatDo == 3)
-		            stack.Print();
-		        
-            }
+		        stack.Print();
+		    }
         }
     }
 }
