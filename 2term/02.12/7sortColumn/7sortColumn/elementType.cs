@@ -1,41 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace elemntType
+namespace NElementType
 {
     // тип, элемент которого массив, определяемый по первому значению.
     class ElementType
     {
-        public int[] mas;
-        public int sizeArray;
-        public ElementType(int size)
+        public ElementType(int size, Random rand)
         {
-            sizeArray = size;
-            mas = new int[sizeArray];
-            // при такой реализации больгая част массива заполняется одинаково.
-            /* Random rand = new Random(DateTime.Now.Millisecond);
-            for (int j = 0; j < sizeArray; j++)
-                mas[j] = rand.Next(100);*/
+            mas = new int[size];
+            for (int j = 0; j < size; j++)
+                mas[j] = rand.Next(100);
         }
 
-        public static void swap(ref ElementType swapOne, ref ElementType swapTwo)
+        public static void Swap(ref ElementType swapOne, ref ElementType swapTwo)
         {
             int[] swapSwap = swapOne.mas;
             swapOne.mas = swapTwo.mas;
             swapTwo.mas = swapSwap;
         }
 
-        public int value()
+        public int Value()
         {
             return mas[0];
         }
 
-        public void print(int numOfLine)
+        public void Print(int numOfLine)
         {
             Console.Write("{0}, ", mas[numOfLine]);
         }
+        
+        private int[] mas;
     }
 }
