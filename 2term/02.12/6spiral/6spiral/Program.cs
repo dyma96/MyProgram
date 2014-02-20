@@ -13,8 +13,9 @@ namespace _6spiral
     class Program
     {
         // обычная печать массива.
-        static void printMas(int[,] mas, int size)
+        static void PrintMas(int[,] mas)
         {
+            int size = mas.GetLength(1); 
             for (int i = 0; i < size; i++)
             {
                 for (int j = 0; j < size; j++)
@@ -24,10 +25,16 @@ namespace _6spiral
             Console.WriteLine();
         }
 
-        // вывод массива mas по спирали с нечетным количеством элементов size.
-        static void printMasSpiral(int[,] mas, int size)
+        private enum Move
         {
-            int speed = 0; // 0 - left, 1 - down, 2 - right, 3 - up
+            Left, Down, Right, Up
+        };
+
+        // вывод массива mas по спирали с нечетным количеством элементов size.
+        static void PrintMasSpiral(int[,] mas)
+        {
+            int size = mas.GetLength(1);
+            Move speed = Move.Left;
             int i = (size - 1) / 2;
             int j = (size - 1) / 2;
             int minI = i - 1;
@@ -37,32 +44,32 @@ namespace _6spiral
             while (i != 0 || j != 0)
             {
                 Console.Write("{0}, " , mas[i,j]);
-                if (speed == 0)
+                if (speed == Move.Left)
                     j--;
-                else if (speed == 1)
+                else if (speed == Move.Down)
                     i++;
-                else if (speed == 2)
+                else if (speed == Move.Right)
                     j++;
-                else if (speed == 3)
+                else if (speed == Move.Up)
                     i--;
-                if (j <= minJ && speed == 0)
+                if (j <= minJ && speed == Move.Left)
                 {
-                    speed = 1;
+                    speed = Move.Down;
                     minJ--;
                 }
-                else if (j >= maxJ && speed == 2)
+                else if (j >= maxJ && speed == Move.Right)
                 {
-                    speed = 3;
+                    speed = Move.Up;
                     maxJ++;
                 }
-                else if (i >= maxI && speed == 1)
+                else if (i >= maxI && speed == Move.Down)
                 { 
-                    speed = 2;
+                    speed = Move.Right;
                     maxI++;
                 }
-                else if (i <= minI && speed == 3)
+                else if (i <= minI && speed == Move.Up)
                 {
-                    speed = 0;
+                    speed = Move.Left;
                     minI--;
                 }
 
@@ -86,13 +93,13 @@ namespace _6spiral
             if (sizeArray % 2 == 0)
                 sizeArray--;
             int[,] mas = new int[sizeArray, sizeArray];
-            Random rand = new Random(DateTime.Now.Millisecond);
+            Random rand = new Random();
             for (int i = 0; i < sizeArray; i++)
                 for (int j = 0; j < sizeArray; j++)
                     mas[i,j] = rand.Next(0, 100);
 
-            printMas(mas, sizeArray);
-            printMasSpiral(mas, sizeArray);
+            PrintMas(mas);
+            PrintMasSpiral(mas);
         }
     }
 }
