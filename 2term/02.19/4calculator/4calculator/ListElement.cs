@@ -15,11 +15,13 @@ namespace NListElement
             this.next = next;
         }
 
+        // return value.
         public ElementType Value()
         {
             return this.value;
         }
 
+        // return next element.
         public ListElement Next()
         {
             return this.next;

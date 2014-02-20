@@ -10,37 +10,25 @@ namespace NCalculator
             stack = new Stack();
         }
         
+        // add number to stack.
         public void AddNumber(int newNumber)
         {
             stack.Push(newNumber);
         }
 
+        // calculate 2 numbers with sign.
         public void AddSign(char sign)
         {
             CalculateTwoNumbers(sign);
         }
 
+        // return value in head in stack.
         public int OutputResult()
         {
             return stack.ValueHead();
         }
 
-/*        public void CreatePost()
-        {
-            string str = Console.ReadLine();
-            foreach (char ch in str)
-            {
-                if (ch == ' ')
-                    continue;
-                if (ch >= '0' && ch <= '9')
-                    stack.Push(ch - '0');
-                else
-                    CalculateTwoNumbers(stack, ch);
-            }
-            Console.WriteLine("result: {0}", stack.ValueHead());
-            //return stack;
-        }
-*/
+        //calculate 2 numbers in stack with sign, push result.
         private void CalculateTwoNumbers(char sign)
         {
 	        int value1 = stack.Pop();

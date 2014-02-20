@@ -44,6 +44,7 @@ namespace NStack
             Console.WriteLine();
         }
 
+        // return value of head.
         public ElementType ValueHead()
         {
             return head.Value();
