@@ -1,18 +1,32 @@
-﻿/* Test is Ok -
- *              1 2 + = 3
- *              1 2 3 + - = -4
- */
-using System;
+﻿using System;
 using NStack;
 
 namespace NCalculator
 {
     class Calculator
     {
-        static public void CreatePost()
+        public Calculator()
         {
-            Stack stack = new Stack();
-            Console.WriteLine("Enter example of postfix notation:");
+            stack = new Stack();
+        }
+        
+        public void AddNumber(int newNumber)
+        {
+            stack.Push(newNumber);
+        }
+
+        public void AddSign(char sign)
+        {
+            CalculateTwoNumbers(sign);
+        }
+
+        public int OutputResult()
+        {
+            return stack.ValueHead();
+        }
+
+/*        public void CreatePost()
+        {
             string str = Console.ReadLine();
             foreach (char ch in str)
             {
@@ -26,8 +40,8 @@ namespace NCalculator
             Console.WriteLine("result: {0}", stack.ValueHead());
             //return stack;
         }
-
-        static private void CalculateTwoNumbers(Stack stack, char sign)
+*/
+        private void CalculateTwoNumbers(char sign)
         {
 	        int value1 = stack.Pop();
 	        int value2 = stack.Pop();
@@ -43,5 +57,6 @@ namespace NCalculator
 	        stack.Push(valueResult);
         }
 
+        private Stack stack;
     }
 }
