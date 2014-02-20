@@ -4,7 +4,7 @@
  */
 using System;
 
-namespace _1factorail
+namespace _1factorial
 {
     class Program
     {

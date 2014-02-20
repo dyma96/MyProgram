@@ -7,8 +7,8 @@
     <ProjectGuid>{8E40BAED-57BB-4EC8-A076-FE670C08F52E}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>_2fibonachi</RootNamespace>
-    <AssemblyName>2fibonachi</AssemblyName>
+    <RootNamespace>_2fibonacсi</RootNamespace>
+    <AssemblyName>2fibonacсi</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

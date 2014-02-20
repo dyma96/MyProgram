@@ -7,8 +7,8 @@
     <ProjectGuid>{2DAB77F8-B664-4A8A-ABD2-A0E512EAFB88}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>_1factorail</RootNamespace>
-    <AssemblyName>1factorail</AssemblyName>
+    <RootNamespace>_1factorial</RootNamespace>
+    <AssemblyName>1factorial</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

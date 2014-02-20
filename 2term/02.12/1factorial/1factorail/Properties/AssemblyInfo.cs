@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Управление общими сведениями о сборке осуществляется с помощью 
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("1factorail")]
+[assembly: AssemblyTitle("1factorial")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("1factorail")]
+[assembly: AssemblyProduct("1factorial")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
