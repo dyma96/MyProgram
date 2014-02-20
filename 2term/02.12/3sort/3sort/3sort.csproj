@@ -41,8 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="elementType.cs" />
-    <Compile Include="qSort.cs" />
+    <Compile Include="ElementType.cs" />
+    <Compile Include="QSort.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

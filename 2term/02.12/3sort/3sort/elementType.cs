@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace elemntType
+namespace NElemntType
 {
     // тип, элемент которого массив, определяемый по первому значению.
     class ElementType
@@ -16,19 +12,19 @@ namespace elemntType
             val = value;
         }
 
-        public static void swap(ref ElementType swapOne, ref ElementType swapTwo)
+        public static void Swap(ref ElementType swapOne, ref ElementType swapTwo)
         {
             int swapSwap = swapOne.val;
             swapOne.val = swapTwo.val;
             swapTwo.val = swapSwap;
         }
 
-        public int value()
+        public int Value()
         {
             return val;
         }
 
-        public void print()
+        public void Print()
         {
             Console.Write("{0}, ", val);
         }

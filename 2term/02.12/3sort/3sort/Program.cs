@@ -3,12 +3,9 @@
  *              5: 13, 73, 67, 60, 33
  */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using sort;
-using elemntType;
+
+using NSort;
+using NElemntType;
 
 namespace _3sort
 {
@@ -17,7 +14,7 @@ namespace _3sort
         static void printMas(ElementType[] mas, int size)
         {
             for (int i = 0; i < size; i++)
-                mas[i].print();
+                mas[i].Print();
             Console.WriteLine();
         }
 
@@ -33,7 +30,7 @@ namespace _3sort
 
             Console.WriteLine("Not sort mas:");
             printMas(mas, sizeArray);
-            qSort.qsort(mas, 0, sizeArray - 1);
+            QSort.Qsort(mas, 0, sizeArray - 1);
             Console.WriteLine("Sort mas:");
             printMas(mas, sizeArray);
             
