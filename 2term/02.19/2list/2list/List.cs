@@ -4,7 +4,7 @@ using Position = System.Int32;
 
 namespace NList
 {
-    // it is magic class! it has a lot of supernatural abilities.
+    // Realizes the ADT List.
     class List
     {
         public List()
