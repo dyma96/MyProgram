@@ -1,14 +1,14 @@
 ﻿using System;
-//using NStack;
-using NStackInMassive;
+using NStack;
 
 namespace NCalculator
 {
+    // Realize calculate: can add number, +, -, *, \, output result
     class Calculator
     {
-        public Calculator()
+        public Calculator(Stack newStack)
         {
-            stack = new Stack();
+            stack = newStack;
         }
         
         // add number to stack.

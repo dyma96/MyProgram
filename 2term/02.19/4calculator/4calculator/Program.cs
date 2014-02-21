@@ -15,7 +15,13 @@ namespace _4calculator
     {
         static void Main(string[] args)
         {
-            Calculator calculator = new Calculator();
+            Calculator calculator = null;
+            Console.WriteLine("1 - for Stack in List");
+            Console.WriteLine("2 - for Stack in Massive");
+            if (Convert.ToInt32(Console.ReadLine()) == 1)
+                calculator = new Calculator(new NStackInList.StackInList());
+            else
+                calculator = new Calculator(new NStackInMassive.StackInMassive());
             int whatDo = -1;
             while (whatDo != 0)
             {

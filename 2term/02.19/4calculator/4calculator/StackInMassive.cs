@@ -1,12 +1,13 @@
 ﻿using System;
+using NStack;
 using ElementType = System.Int32;
 
 namespace NStackInMassive
 {
-    // ..
-    public class Stack
+    // Realizes a stack on the massive.
+    public class StackInMassive: NStack.Stack
     {
-        public Stack()
+        public StackInMassive()
         {
             mas = new ElementType[size];
             numberElement = 0;
