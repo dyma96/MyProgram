@@ -1,5 +1,6 @@
 ﻿using System;
-using NStack;
+//using NStack;
+using NStackInMassive;
 
 namespace NCalculator
 {
@@ -25,6 +26,7 @@ namespace NCalculator
         // return value in head in stack.
         public int OutputResult()
         {
+            stack.Print();
             return stack.ValueHead();
         }
 

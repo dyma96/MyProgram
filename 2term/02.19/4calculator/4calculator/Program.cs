@@ -2,6 +2,8 @@
  *              1 2 + = 3
  *              1 2 3 - + = 0
  *              9 6 - 1 2 + * = 9
+ *              
+ *              If you want stack in List ot in Massive comment in Calculator.cs what you want.
  */
 using System;
 using NCalculator;
