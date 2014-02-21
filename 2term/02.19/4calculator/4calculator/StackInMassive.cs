@@ -3,6 +3,7 @@ using ElementType = System.Int32;
 
 namespace NStackInMassive
 {
+    // ..
     public class Stack
     {
         public Stack()
@@ -49,7 +50,9 @@ namespace NStackInMassive
         }
 
         private ElementType[] mas;
+        // size array.
         private int size = 100;
+        //number element in massive.
         private int numberElement;
     }
 }

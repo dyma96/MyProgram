@@ -4,6 +4,7 @@ using ElementType = System.Int32;
 
 namespace NStack
 {
+    // ..
     public class Stack
     {
         public Stack()
@@ -50,7 +51,10 @@ namespace NStack
         }
 
         private ListElement head;
-        
+
+        // this class have private element: value and pointer to the next element.
+        // have emty constructor, constructor with value and next element.
+        // can add and delete next element, return value and next element.
         private class ListElement
         {
             public ListElement()

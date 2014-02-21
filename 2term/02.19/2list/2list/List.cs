@@ -4,6 +4,7 @@ using Position = System.Int32;
 
 namespace NList
 {
+    // it is magic class! it has a lot of supernatural abilities.
     class List
     {
         public List()
@@ -79,6 +80,7 @@ namespace NList
                 return i;
             return -1;
         }
+
         // return true or false - exist element value in stack.
         public bool Exist(ElementType value)
         {
@@ -106,6 +108,9 @@ namespace NList
 
         private ListElement head;
 
+        // this class have private element: value and pointer to the next element.
+        // have emty constructor, constructor with value and next element.
+        // can add and delete next element, return value and next element.
         private class ListElement
         {
             public ListElement()
