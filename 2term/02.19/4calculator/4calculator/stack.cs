@@ -4,7 +4,7 @@ using ElementType = System.Int32;
 namespace NStack
 {
     // I don't now how to write a comment=) because it's just a stack.
-    interface Stack
+    public interface Stack
     {
        // add element newValue to head.
         void Push(ElementType newValue);

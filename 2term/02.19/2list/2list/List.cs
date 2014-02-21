@@ -5,7 +5,7 @@ using Position = System.Int32;
 namespace NList
 {
     // Realizes the ADT List.
-    class List
+    public class List
     {
         public List()
         {
