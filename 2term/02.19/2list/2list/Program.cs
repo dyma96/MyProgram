@@ -20,10 +20,11 @@ namespace _2list
             while (whatDo != 0)
             {
                 Console.WriteLine("0 - exit");
-                Console.WriteLine("1 - add element");
+                Console.WriteLine("1 - add element to tail");
                 Console.WriteLine("2 - add element to head");
-                Console.WriteLine("3 - delete element");
-                Console.WriteLine("4 - exist element");
+                Console.WriteLine("3 - add element to position");
+                Console.WriteLine("4 - delete element");
+                Console.WriteLine("5 - exist element");
                 whatDo = Convert.ToInt32(Console.ReadLine());
                 if (whatDo == 1)
                 {
@@ -39,11 +40,19 @@ namespace _2list
                 }
                 if (whatDo == 3)
                 {
+                    Console.WriteLine("Enter number for add - ");
+                    int newNum = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Enter number position to add - ");
+                    int numPos = Convert.ToInt32(Console.ReadLine());
+                    list.AddElementToPosition(newNum, numPos);
+                }
+                if (whatDo == 4)
+                {
                     Console.WriteLine("Enter number for delete - ");
                     int deleteNum = Convert.ToInt32(Console.ReadLine());
                     list.DeleteElement(deleteNum);
                 }
-                if (whatDo == 4)
+                if (whatDo == 5)
                 {
                     Console.WriteLine("Enter number for exist - ");
                     int existNum = Convert.ToInt32(Console.ReadLine());
