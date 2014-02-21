@@ -14,11 +14,13 @@ namespace NHash
                 bucket[i] = new List();
         }
         
-        static int HashFunction(ElementType newElement)
+        // hash function: return int number.
+        static private int HashFunction(ElementType newElement)
         {
             return (newElement * (newElement + 5 * newElement % 3) / 2);
         }
 
+        // add element to hash table with value newElement. 
         public void AddToHashTable(ElementType newElement)
         {
             if (ExistHash(newElement))
@@ -29,6 +31,7 @@ namespace NHash
             bucket[HashFunction(newElement) % bucket.GetLength(0)].AddElementToHead(newElement);
         }
 
+        // delete element wit value deleteElemenet.
         public void DeleteElement(ElementType deleteElement)
         {
             if (!ExistHash(deleteElement))
@@ -39,11 +42,13 @@ namespace NHash
             bucket[HashFunction(deleteElement) % bucket.GetLength(0)].DeleteElement(deleteElement);
         }
         
+        // retirn tru or false: exist element with value element.
         public bool ExistHash(ElementType element)
         {
             return bucket[HashFunction(element) % bucket.GetLength(0)].ExistList(element);
         }
 
+        // print hash table.
         public void PrintHash()
         {
             for (int i = 0; i < bucket.GetLength(0); i++)

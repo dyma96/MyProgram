@@ -1,5 +1,4 @@
 ﻿using System;
-using NListElement;
 using ElementType = System.Int32;
 
 namespace NList
@@ -56,21 +55,6 @@ namespace NList
             return (temp.Value() == value);
         }
 
-        public ListElement Head()
-        {
-            return head;
-        }
-
-        public ListElement Next(ListElement element)
-        {
-            return element.Next();
-        }
-
-        public ElementType Value(ListElement element)
-        {
-            return element.Value();
-        }
-
         public void Print()
         {
             Console.WriteLine();
@@ -86,5 +70,43 @@ namespace NList
         }
 
         private ListElement head;
+
+        private class ListElement
+        {
+            public ListElement()
+            { }
+
+            public ListElement(ElementType value, ListElement next)
+            {
+                this.value = value;
+                this.next = next;
+            }
+
+            public void AddListElement(ElementType value)
+            {
+                ListElement temp = new ListElement(value, this.next);
+                this.next = temp;
+            }
+
+            // delete after this.
+            public void DeleteListElement()
+            {
+                this.next = this.next.next;
+            }
+
+            public ElementType Value()
+            {
+                return this.value;
+            }
+
+            public ListElement Next()
+            {
+                return this.next;
+            }
+
+            private ElementType value;
+            private ListElement next;
+        }
+
     }
 }
