@@ -4,7 +4,7 @@ using NStack;
 namespace NCalculator
 {
     // Realize calculate: can add number, +, -, *, \, output result
-    class Calculator
+    public class Calculator
     {
         public Calculator(Stack newStack)
         {
