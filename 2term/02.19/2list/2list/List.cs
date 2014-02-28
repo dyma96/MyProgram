@@ -76,7 +76,7 @@ namespace NList
             ListElement temp = head;
             int i = 0;
             for (temp = head; temp != null && temp.Value() != value; temp = temp.Next(), i++) ;
-            if (temp != null)
+            if (temp.Value() == value)
                 return i;
             return -1;
         }
