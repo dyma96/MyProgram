@@ -2,6 +2,7 @@
 
 #include <QMainWindow>
 #include <QLineEdit>
+#include <QProgressBar>
 
 namespace Ui {
 class MainWindow;
@@ -26,7 +27,10 @@ private slots:
 
     void on_lineEdit_returnPressed();
 
+    void on_webView_loadProgress(int progress);
+
 private:
     Ui::MainWindow *ui;
+    QProgressBar *PageProgress;
 
 };
