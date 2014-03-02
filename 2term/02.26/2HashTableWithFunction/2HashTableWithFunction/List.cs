@@ -4,7 +4,9 @@ using Position = System.Int32;
 
 namespace NList
 {
-    // It is magic class! it has a lot of supernatural abilities.
+    /// <summary>
+    /// It is magic class! it has a lot of supernatural abilities. 
+    /// </summary>
     public class List
     {
         public List()
@@ -12,7 +14,10 @@ namespace NList
             head = null;
         }
 
-        // Add element to end with value value.
+        /// <summary>
+        /// Add element to end with value value.
+        /// </summary>
+        /// <param name="value"></param>
         public void AddElement(ElementType value)
         {
             if (head == null)
@@ -25,7 +30,11 @@ namespace NList
             temp.AddListElement(value);
         }
 
-        // Add element after position pos.
+        /// <summary>
+        /// Add element after position pos.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="pos"></param>
         public void AddElementToPosition(ElementType value, Position pos)
         {
             if (head == null)
@@ -44,13 +53,19 @@ namespace NList
             temp.AddListElement(value);
         }
 
-        // Add element to head with value value.
+        /// <summary>
+        /// Add element to head with value value. 
+        /// </summary>
+        /// <param name="value"></param>
         public void AddElementToHead(ElementType value)
         {
             head = new ListElement(value, head);
         }
 
-        // Delete element with value deleteNum.
+        /// <summary>
+        /// Delete element with value deleteNum. 
+        /// </summary>
+        /// <param name="deleteNum"></param>
         public void DeleteElement(ElementType deleteNum)
         {
             if (head == null)
@@ -70,7 +85,11 @@ namespace NList
             }
         }
 
-        // Return position element with vale value.
+        /// <summary>
+        /// Search position element.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns> Position element with vale value. </returns>
         public Position PositionElement(ElementType value)
         {
             ListElement temp = head;
@@ -81,7 +100,11 @@ namespace NList
             return -1;
         }
 
-        // Return true or false - exist element value in stack.
+        /// <summary>
+        /// Return true or false - exist element value in stack. 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns> Exist element or not. </returns>
         public bool Exist(ElementType value)
         {
             if (head == null)
@@ -91,7 +114,9 @@ namespace NList
             return (temp.Value() == value);
         }
 
-        // Print list.
+        /// <summary>
+        /// Print list.
+        /// </summary>
         public void Print()
         {
             Console.WriteLine();
@@ -108,9 +133,9 @@ namespace NList
 
         private ListElement head;
 
-        // This class have private element: value and pointer to the next element.
-        // Have emty constructor, constructor with value and next element.
-        // Can add and delete next element, return value and next element.
+        /// <summary>
+        /// Class have value and pointer to the next element. 
+        /// </summary>
         private class ListElement
         {
             public ListElement()
@@ -121,27 +146,38 @@ namespace NList
                 this.value = value;
                 this.next = next;
             }
-
-            // Add element before this with value value.
+            
+            /// <summary>
+            /// Add element before this with value value. 
+            /// </summary>
+            /// <param name="value"></param>
             public void AddListElement(ElementType value)
             {
                 ListElement temp = new ListElement(value, this.next);
                 this.next = temp;
             }
 
-            // Delete after this.
+            /// <summary>
+            /// Delete after this.
+            /// </summary>
             public void DeleteListElement()
             {
                 this.next = this.next.next;
             }
 
-            // Return value of element.
+            /// <summary>
+            /// Return value of element.
+            /// </summary>
+            /// <returns> Value of element. </returns>
             public ElementType Value()
             {
                 return this.value;
             }
 
-            // Return next element.
+            /// <summary>
+            /// Return next element.
+            /// </summary>
+            /// <returns>Nexr element. </returns>
             public ListElement Next()
             {
                 return this.next;

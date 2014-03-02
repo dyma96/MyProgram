@@ -4,7 +4,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Hash.Test
 {
     using _2HashTableWithFunction;
-    // Test Hash table.
+   
+    /// <summary>
+    /// Test Hash table. 
+    /// </summary>
     [TestClass]
     public class HashTest
     {

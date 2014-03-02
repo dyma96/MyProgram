@@ -5,7 +5,9 @@ using ElementType = System.Int32;
 
 namespace _2HashTableWithFunction
 {
-    // This class keep elemenets in hash table.
+    /// <summary>
+    /// This class keep elemenets in hash table.
+    /// </summary>
     public class HashTable
     {
         public HashTable(int size)
@@ -16,7 +18,11 @@ namespace _2HashTableWithFunction
             HashFunction = ClassHashFunction.HashFunction0;
         }
 
-        // Constructor with size hash table and number hash function. 
+        /// <summary>
+        /// Constructor with size hash table and number hash function. 
+        /// </summary>
+        /// <param name="size"></param>
+        /// <param name="numberFunction"></param>
         public HashTable(int size, int numberFunction)
         {
             bucket = new List[size];
@@ -26,7 +32,10 @@ namespace _2HashTableWithFunction
             HashFunction = ClassHashFunction.Function(numberFunction);
         }
 
-        // Add element to hash table with value newElement. 
+        /// <summary>
+        /// Add element to hash table with value newElement.  
+        /// </summary>
+        /// <param name="newElement"></param>
         public void AddToHashTable(ElementType newElement)
         {
             if (Exist(newElement))
@@ -37,7 +46,10 @@ namespace _2HashTableWithFunction
             bucket[HashFunction(newElement) % bucket.GetLength(0)].AddElementToHead(newElement);
         }
 
-        // Delete element wit value deleteElemenet.
+        /// <summary>
+        /// Delete element wit value deleteElemenet. 
+        /// </summary>
+        /// <param name="deleteElement"></param>
         public void DeleteElement(ElementType deleteElement)
         {
             if (!Exist(deleteElement))
@@ -48,13 +60,19 @@ namespace _2HashTableWithFunction
             bucket[HashFunction(deleteElement) % bucket.GetLength(0)].DeleteElement(deleteElement);
         }
         
-        // Return tru or false: exist element with value element.
+        /// <summary>
+        /// Return tru or false: exist element with value element. 
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns> Exist element or not </returns>
         public bool Exist(ElementType element)
         {
             return bucket[HashFunction(element) % bucket.GetLength(0)].Exist(element);
         }
 
-        // Print hash table.
+        /// <summary>
+        /// Print hash table. 
+        /// </summary>
         public void PrintHash()
         {
             for (int i = 0; i < bucket.GetLength(0); i++)

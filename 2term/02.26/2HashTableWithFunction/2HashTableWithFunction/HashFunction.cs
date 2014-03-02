@@ -3,7 +3,9 @@ using ElementType = System.Int32;
 
 namespace _2HashTableWithFunction
 {
-    // Class with some hash function.
+    /// <summary>
+    /// Class with some hash function. 
+    /// </summary>
     public class ClassHashFunction
     {
         public delegate int HashFunction(ElementType Element);
@@ -23,7 +25,12 @@ namespace _2HashTableWithFunction
             return (newElement * newElement *(newElement % 4 + newElement % 3) / 2);
         }
 
-        // Return function with numberFunction or HashFunction0.
+        /// <summary>
+        /// If it have not function with number numberFuction
+        /// it return HashFunction0.
+        /// </summary>
+        /// <param name="numberFunction"></param>
+        /// <returns> Function with numberFunction or HashFunction0. </returns>
         static public HashFunction Function(int numberFunction)
         {
             if (numberFunction == 0)

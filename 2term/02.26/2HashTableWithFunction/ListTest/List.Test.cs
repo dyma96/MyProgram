@@ -5,7 +5,9 @@ namespace List.Test
 {
     using NList;
 
-    // Test List.
+    /// <summary>
+    /// Test List. 
+    /// </summary>
     [TestClass]
     public class ListTest
     {
