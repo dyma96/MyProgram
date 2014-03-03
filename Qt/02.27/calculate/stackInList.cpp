@@ -1,36 +1,39 @@
 #include "stackInList.h"
+#include "stack.h"
 
-using namespace stackNameSpace;
+using namespace stackNamespace;
 
-
-/*Stack::Stack() {
-}
-
-*/
 StackInList::StackInList() {
-    this->head = new ListElement();
+    this->myHead = new ListElement();
 }
 
-/*
 StackInList::~StackInList() {
-    head->deleteElement();
+    if (myHead == nullptr)
+        return;
+    for (ListElement *temp = myHead->next(); temp != nullptr; temp = temp->next()) {
+        myHead->deleteElement();
+        myHead = temp;
+    }
 }
-*/
+
 void StackInList::push(int value) {
-    ListElement *temp = new ListElement(value, head);
-    head = temp;
+    ListElement *temp = new ListElement(value, myHead);
+    myHead = temp;
 }
 
 int StackInList::pop() {
-    int value = head->value();
-    ListElement *temp = head;
-    head = head->next();
+    int value = myHead->value();
+    ListElement *temp = myHead;
+    myHead = myHead->next();
     temp->deleteElement();
     return value;
 }
 
-StackInList::ListElement::ListElement() : myValue(0), myNext(nullptr) {
+int StackInList::head() const {
+    return myHead->value();
 }
+
+
 
 StackInList::ListElement::ListElement(int value, ListElement *next)
     : myValue(value), myNext(next) {
@@ -44,11 +47,11 @@ void StackInList::ListElement::deleteElement() {
     delete this;
 }
 
-int StackInList::ListElement::value() {
+int StackInList::ListElement::value() const {
     return myValue;
 }
 
-StackInList::ListElement *StackInList::ListElement::next() {
+StackInList::ListElement *StackInList::ListElement::next() const {
     return myNext;
 }
 

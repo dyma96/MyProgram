@@ -17,8 +17,10 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    stackInList.cpp
+    stackInList.cpp \
+    calculate.cpp
 
 HEADERS += \
     stackInList.h \
-    stack.h
+    stack.h \
+    calculate.h
