@@ -14,7 +14,7 @@ namespace Hash.Test
         [TestInitialize]
         public void Initialize()
         {
-            hash = new HashTable(10, 1);
+            hash = new HashTable(10, new HashFunctionClass1());
         }
 
         [TestMethod]

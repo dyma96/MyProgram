@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2HashTableWithFunction", "2HashTableWithFunction\2HashTableWithFunction.csproj", "{4B8EF759-EDF7-437F-B03A-65AF769B9303}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashTableTest", "HashTableTest\HashTableTest.csproj", "{2E8BCFBC-1FC0-4AF1-8B58-2104549633B9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashTable.Test", "HashTableTest\HashTable.Test.csproj", "{2E8BCFBC-1FC0-4AF1-8B58-2104549633B9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "List.Test", "ListTest\List.Test.csproj", "{6A363FAB-C25A-46EA-87CE-3CED5CF7209A}"
 EndProject

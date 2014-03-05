@@ -10,26 +10,27 @@ namespace _2HashTableWithFunction
     /// </summary>
     public class HashTable
     {
+        
         public HashTable(int size)
         {
             bucket = new List[size];
             for (int i = 0; i < size; i++)
                 bucket[i] = new List();
-            HashFunction = ClassHashFunction.HashFunction0;
+            HashFunction = new HashFunctionClass();
         }
-
+        
         /// <summary>
         /// Constructor with size hash table and number hash function. 
         /// </summary>
         /// <param name="size"></param>
         /// <param name="numberFunction"></param>
-        public HashTable(int size, int numberFunction)
+        public HashTable(int size, HashFunctionInterface func)
         {
             bucket = new List[size];
             for (int i = 0; i < size; i++)
                 bucket[i] = new List();
 
-            HashFunction = ClassHashFunction.Function(numberFunction);
+            HashFunction = func;
         }
 
         /// <summary>
@@ -43,7 +44,7 @@ namespace _2HashTableWithFunction
                 Console.WriteLine("Element exist");
                 return;
             }
-            bucket[HashFunction(newElement) % bucket.GetLength(0)].AddElementToHead(newElement);
+            bucket[HashFunction.function(newElement) % bucket.GetLength(0)].AddElementToHead(newElement);
         }
 
         /// <summary>
@@ -57,7 +58,7 @@ namespace _2HashTableWithFunction
                 Console.WriteLine("Element not exist");
                 return;
             }
-            bucket[HashFunction(deleteElement) % bucket.GetLength(0)].DeleteElement(deleteElement);
+            bucket[HashFunction.function(deleteElement) % bucket.GetLength(0)].DeleteElement(deleteElement);
         }
         
         /// <summary>
@@ -67,7 +68,7 @@ namespace _2HashTableWithFunction
         /// <returns> Exist element or not </returns>
         public bool Exist(ElementType element)
         {
-            return bucket[HashFunction(element) % bucket.GetLength(0)].Exist(element);
+            return bucket[HashFunction.function(element) % bucket.GetLength(0)].Exist(element);
         }
 
         /// <summary>
@@ -81,6 +82,7 @@ namespace _2HashTableWithFunction
             }
         }
         private List[] bucket;
-        private ClassHashFunction.HashFunction HashFunction;
+        HashFunctionInterface HashFunction;
+        
     }
 }
