@@ -110,8 +110,19 @@ namespace NList
             if (head == null)
                 return false;
             ListElement temp = head;
-            for (temp = head;  temp.Next() != null && temp.Value() != value; temp = temp.Next());
+            for (temp = head; temp.Next() != null && temp.Value() != value; temp = temp.Next()) ;
             return (temp.Value() == value);
+        }
+
+        /// <summary>
+        /// Is this list empty.
+        /// </summary>
+        /// <returns> True - if list empty, false - otherwise. </returns>
+        public bool IsEmpty()
+        {
+            if (head == null || this == null)
+                return true;
+            return false;
         }
 
         /// <summary>
@@ -129,6 +140,11 @@ namespace NList
             for (temp = head; temp.Next() != null; temp = temp.Next())
                 Console.Write("{0}, ", temp.Value());
             Console.WriteLine("{0}", temp.Value());
+        }
+
+        public ElementType ValueHead()
+        {
+            return head.Value();
         }
 
         private ListElement head;

@@ -14,7 +14,7 @@ namespace Hash.Test
         [TestInitialize]
         public void Initialize()
         {
-            hash = new HashTable(10, new HashFunctionClass1());
+            hash = new HashTable(5, new HashFunctionClass1());
         }
 
         [TestMethod]
@@ -37,6 +37,18 @@ namespace Hash.Test
         {
             hash.DeleteElement(1);
             Assert.IsFalse(hash.Exist(1));
+        }
+
+        [TestMethod]
+        public void ChangeHashFunctionTest()
+        {
+            hash.AddToHashTable(1);
+            hash.AddToHashTable(2);
+            hash.AddToHashTable(3);
+            hash.ChangeHashFunction(new HashFunctionClass0());
+            Assert.IsTrue(hash.Exist(1)); 
+            Assert.IsTrue(hash.Exist(2)); 
+            Assert.IsTrue(hash.Exist(3));
         }
 
         private HashTable hash;

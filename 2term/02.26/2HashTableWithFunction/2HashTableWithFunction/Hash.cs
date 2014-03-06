@@ -10,13 +10,12 @@ namespace _2HashTableWithFunction
     /// </summary>
     public class HashTable
     {
-        
         public HashTable(int size)
         {
             bucket = new List[size];
             for (int i = 0; i < size; i++)
                 bucket[i] = new List();
-            HashFunction = new HashFunctionClass();
+            HashFunction = new HashFunctionClass0();
         }
         
         /// <summary>
@@ -81,6 +80,30 @@ namespace _2HashTableWithFunction
                 bucket[i].Print();
             }
         }
+        
+        /// <summary>
+        /// Function to change hash function without delete elements
+        /// </summary>
+        /// <param name="func"></param>
+        public void ChangeHashFunction(HashFunctionInterface func)
+        {
+            List[] temp = new List[bucket.GetLength(0)];
+            for (int i = 0; i < bucket.GetLength(0); i++)
+                temp[i] = new List();
+            
+            for (int i = 0; i < bucket.GetLength(0); i++)
+            {
+                while (!bucket[i].IsEmpty())
+                {
+                    temp[func.function(bucket[i].ValueHead()) % temp.GetLength(0)]
+                        .AddElementToHead(bucket[i].ValueHead());
+                    bucket[i].DeleteElement(bucket[i].ValueHead());
+                }
+            }
+            HashFunction = func;
+            bucket = temp;
+        }
+
         private List[] bucket;
         HashFunctionInterface HashFunction;
         
