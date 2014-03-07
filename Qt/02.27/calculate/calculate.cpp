@@ -1,6 +1,9 @@
 #include "calculate.h"
 using namespace calculateNamespace;
 
+Calculate::Calculate() : stack(StackInList()) {
+}
+
 Calculate::Calculate(StackInList newStack): stack(newStack){
 }
 
@@ -16,7 +19,6 @@ void Calculate::addSign(char sign) {
 
 // return value in head in stack.
 int Calculate::outputResult() const {
-//    stack.Print();
     return stack.head();
 }
 

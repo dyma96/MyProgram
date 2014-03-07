@@ -10,6 +10,8 @@ namespace calculateNamespace {
 class Calculate
 {
 public:
+    Calculate();
+
     Calculate(StackInList newStack);
 
     // add number to stack.

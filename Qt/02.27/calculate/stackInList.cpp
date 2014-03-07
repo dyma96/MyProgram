@@ -11,7 +11,7 @@ StackInList::~StackInList() {
     if (myHead == nullptr)
         return;
     for (ListElement *temp = myHead->next(); temp != nullptr; temp = temp->next()) {
-        myHead->deleteElement();
+        delete myHead;
         myHead = temp;
     }
 }
@@ -22,10 +22,12 @@ void StackInList::push(int value) {
 }
 
 int StackInList::pop() {
+    if (myHead == nullptr)
+        return -1;
     int value = myHead->value();
     ListElement *temp = myHead;
     myHead = myHead->next();
-    temp->deleteElement();
+    delete temp;
     return value;
 }
 
@@ -40,12 +42,8 @@ StackInList::ListElement::ListElement(int value, ListElement *next)
 }
 
 StackInList::ListElement::~ListElement() {
-    delete this;
 }
 
-void StackInList::ListElement::deleteElement() {
-    delete this;
-}
 
 int StackInList::ListElement::value() const {
     return myValue;

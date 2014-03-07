@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core
-
+QT       += testlib
 QT       -= gui
 
 TARGET = calculate
@@ -18,9 +18,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     stackInList.cpp \
-    calculate.cpp
+    calculate.cpp \
+    calculatetest.cpp
 
 HEADERS += \
     stackInList.h \
     stack.h \
-    calculate.h
+    calculate.h \
+    calculatetest.h
+
+FORMS +=

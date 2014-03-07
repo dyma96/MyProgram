@@ -27,10 +27,6 @@ private:
         ListElement(int value, ListElement *next);
         ~ListElement();
 
-    //    void addElement(int value);
-        // Delete this element.
-        void deleteElement();
-
         // Return value this element.
         int value() const;
 
@@ -42,6 +38,6 @@ private:
         ListElement *myNext = nullptr;
     };
 
-    ListElement *myHead; // Element in StackInList.
+    ListElement *myHead = nullptr; // Element in StackInList.
 };
 }
