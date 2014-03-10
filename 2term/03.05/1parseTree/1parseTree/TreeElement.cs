@@ -34,12 +34,18 @@ namespace _1parseTree
             if (ch == '(')
             {
                 ch = file.Read();  // ' '
-                // if ch != ' ' - error
-                ch = file.Read();  // операция
-                // if ch != '+', '-', '*', '/' - error
+                if (ch != ' ')
+                    throw new ExeptionParseTree("Waiting ' '.");
+
+                ch = file.Read();  // sign
+                if (ch != '+' && ch != '-' && ch != '*' && ch != '/')
+                    throw new ExeptionParseTree("Waiting sign.");
+                
                 value = ch;
                 ch = file.Read();  // ' '
-                // if ch != ' ' - error
+                if (ch != ' ')
+                    throw new ExeptionParseTree("Waiting ' '.");
+                
                 left = new TreeElement(file);
                 right = new TreeElement(file);
             }
@@ -53,9 +59,13 @@ namespace _1parseTree
                     ch = file.Read();
                 }
                 // if ch != ' ' - error
+                if (ch != ' ')
+                    throw new ExeptionParseTree("Waiting ' '.");
+                
                 value = number;
             }
-            // else error.
+            else
+                throw new ExeptionParseTree("Waiting '(' or number.");
         }
 
         /// <summary>

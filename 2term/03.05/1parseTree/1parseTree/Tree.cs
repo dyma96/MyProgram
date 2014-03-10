@@ -5,7 +5,7 @@ using Position = System.Int32;
 
 namespace _1parseTree
 {
-\    public class Tree
+    public class Tree
     {
         public Tree(TreeElement root)
         {
@@ -59,14 +59,6 @@ namespace _1parseTree
             else
                 temp.AddTreeElement(value, true);
 
-        }
-
-        /// <summary>
-        /// Print tree.
-        /// </summary>
-        virtual public void Print()
-        {
-            root.Print();
         }
 
         private TreeElement root;

@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExeptionParseTree.cs" />
     <Compile Include="ParseTree.cs" />
     <Compile Include="Tree.cs" />
     <Compile Include="Program.cs" />
