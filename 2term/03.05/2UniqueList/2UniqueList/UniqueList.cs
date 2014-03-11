@@ -43,10 +43,8 @@ namespace _2UniqueList
         public void DeleteElement(int deleteNum)
         {
             if (head == null)
-            {
-                Console.WriteLine("List is empty");
-                return;
-            }
+                throw new ExceptionUniqueList("Can't delete element. List is empty");
+          
             ListElement temp = head;
             if (head.Value() == deleteNum)
                 head = head.Next();
