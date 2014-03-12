@@ -2,11 +2,11 @@
 
 namespace _2HashTableWithFunction
 {
-    public class HashFunctionClass1: HashFunctionInterface
+    public class HashFunctionClass0: HashFunctionInterface
     {
         public int Function(int num)
         {
-            return num * num + num * 3 + 2;
+            return 0;
         }
     }
 }

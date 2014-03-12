@@ -15,7 +15,7 @@ namespace _2HashTableWithFunction
             bucket = new List[size];
             for (int i = 0; i < size; i++)
                 bucket[i] = new List();
-            HashFunction = new HashFunctionClass0();
+            hashFunction = new HashFunctionClass0();
         }
         
         /// <summary>
@@ -29,7 +29,7 @@ namespace _2HashTableWithFunction
             for (int i = 0; i < size; i++)
                 bucket[i] = new List();
 
-            HashFunction = func;
+            hashFunction = func;
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace _2HashTableWithFunction
                 Console.WriteLine("Element exist");
                 return;
             }
-            bucket[HashFunction.function(newElement) % bucket.GetLength(0)].AddElementToHead(newElement);
+            bucket[hashFunction.Function(newElement) % bucket.Length].AddElementToHead(newElement);
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace _2HashTableWithFunction
                 Console.WriteLine("Element not exist");
                 return;
             }
-            bucket[HashFunction.function(deleteElement) % bucket.GetLength(0)].DeleteElement(deleteElement);
+            bucket[hashFunction.Function(deleteElement) % bucket.Length].DeleteElement(deleteElement);
         }
         
         /// <summary>
@@ -67,7 +67,7 @@ namespace _2HashTableWithFunction
         /// <returns> Exist element or not </returns>
         public bool Exist(ElementType element)
         {
-            return bucket[HashFunction.function(element) % bucket.GetLength(0)].Exist(element);
+            return bucket[hashFunction.Function(element) % bucket.Length].Exist(element);
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace _2HashTableWithFunction
         /// </summary>
         public void PrintHash()
         {
-            for (int i = 0; i < bucket.GetLength(0); i++)
+            for (int i = 0; i < bucket.Length; i++)
             {
                 bucket[i].Print();
             }
@@ -87,25 +87,25 @@ namespace _2HashTableWithFunction
         /// <param name="func"></param>
         public void ChangeHashFunction(HashFunctionInterface func)
         {
-            List[] temp = new List[bucket.GetLength(0)];
-            for (int i = 0; i < bucket.GetLength(0); i++)
+            List[] temp = new List[bucket.Length];
+            for (int i = 0; i < bucket.Length; i++)
                 temp[i] = new List();
             
-            for (int i = 0; i < bucket.GetLength(0); i++)
+            for (int i = 0; i < bucket.Length; i++)
             {
                 while (!bucket[i].IsEmpty())
                 {
-                    temp[func.function(bucket[i].ValueHead()) % temp.GetLength(0)]
+                    temp[func.Function(bucket[i].ValueHead()) % temp.Length]
                         .AddElementToHead(bucket[i].ValueHead());
                     bucket[i].DeleteElement(bucket[i].ValueHead());
                 }
             }
-            HashFunction = func;
+            hashFunction = func;
             bucket = temp;
         }
 
         private List[] bucket;
-        HashFunctionInterface HashFunction;
+        private HashFunctionInterface hashFunction;
         
     }
 }

@@ -8,6 +8,6 @@ namespace _2HashTableWithFunction
     /// </summary>
     public interface HashFunctionInterface
     {
-        int function(ElementType newElement);
+        int Function(ElementType newElement);
     }
 }
