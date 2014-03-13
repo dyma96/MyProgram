@@ -10,56 +10,55 @@ namespace NParseTreeTest
     [TestClass]
     public class ParseTreeTest
     {
-        [TestMethod]
-        public void ConstructorTest()
+        [TestInitialize]
+        public void Initialize()
         {
-            FileInfo fInfo = new FileInfo("..//..//newFile.txt");
-            StreamWriter fWrite = fInfo.CreateText();
-            fWrite.WriteLine("( + 1 2 )");
-            fWrite.Close();
-            StreamReader fRead = fInfo.OpenText();
-            ParseTree tree = new ParseTree(fRead);
-            fRead.Close();
-            fInfo.Delete();
+            fInfo = new FileInfo("..//..//newFile.txt");
         }
 
         [TestMethod]
+        public void ConstructorTest()
+        {
+            StreamWriter fWrite = fInfo.CreateText();
+            fWrite.WriteLine("( + 1 2 )");
+            fWrite.Close();
+        
+            fRead = fInfo.OpenText();
+            ParseTree tree = new ParseTree(fRead);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ExeptionParseTree))]
         public void ExeptionTest()
         {
-            FileInfo fInfo = new FileInfo("..//..//newFile.txt");
             StreamWriter fWrite = fInfo.CreateText();
             fWrite.WriteLine("( a )");
             fWrite.Close();
-            StreamReader fRead = fInfo.OpenText();
-            try
-            {
-                ParseTree tree = new ParseTree(fRead);
-            }
-            catch (ExeptionParseTree)
-            {
-                Assert.IsTrue(true);
-                return;
-            }
-            finally
-            {
-                fRead.Close();
-                fInfo.Delete();
-            }
-            Assert.IsFalse(true);
+            
+            fRead = fInfo.OpenText();
+            ParseTree tree = new ParseTree(fRead);
         }
 
         [TestMethod]
         public void ResultTest()
         {
-            FileInfo fInfo = new FileInfo("..//..//newFile.txt");
             StreamWriter fWrite = fInfo.CreateText();
-            fWrite.WriteLine("( + 1 ( - 2 1 ) )");
+            fWrite.WriteLine("( + 1 2 )");
             fWrite.Close();
-            StreamReader fRead = fInfo.OpenText();
+         
+            fRead = fInfo.OpenText();
             ParseTree tree = new ParseTree(fRead);
-            Assert.AreEqual(tree.Result(), 2);
+            Assert.IsTrue(tree.Result() == 3);
+        }
+
+        [TestCleanup]
+        public void Clean()
+        {
             fRead.Close();
             fInfo.Delete();
         }
+
+        private FileInfo fInfo;
+        private StreamReader fRead; 
     }
 }

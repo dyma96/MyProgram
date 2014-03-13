@@ -5,27 +5,13 @@ namespace _1parseTree
 {
     public class ParseTree: Tree 
     {
-        public ParseTree(StreamReader file) : base(new TreeElement(file))
+        /// <summary>
+        /// Constructor, which read information in file.
+        /// </summary>
+        /// <param name="file"> File with information for tree. </param>
+        public ParseTree(StreamReader file) : base(file)
         {
         }
         
-        /// <summary>
-        /// Calculate result in parse tree.
-        /// </summary>
-        /// <returns> Result of calculate. </returns>
-        public int Result()
-        {
-            if (this.Root() == null)
-                return 0;
-            return Root().Calculate();
-        }
-
-        /// <summary>
-        /// Print tree.
-        /// </summary>
-        virtual public void Print()
-        {
-            Root().Print();
-        }
     }
 }
