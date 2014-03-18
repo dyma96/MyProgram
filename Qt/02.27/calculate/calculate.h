@@ -3,8 +3,6 @@
 #include "stack.h"
 #include "stackInList.h"
 
-using namespace stackNamespace;
-
 namespace calculateNamespace {
 // Realize calculate: can add number, +, -, *, \, output result
 class Calculate
@@ -12,7 +10,7 @@ class Calculate
 public:
     Calculate();
 
-    Calculate(StackInList newStack);
+    Calculate(stackNamespace::StackInList newStack);
 
     // add number to stack.
     void addNumber(int newNumber);
@@ -27,7 +25,7 @@ private:
     //calculate 2 numbers in stack with sign, push result.
     void calculateTwoNumbers(char sign);
 
-    StackInList stack;
+    stackNamespace::StackInList stack;
 };
 
 }

@@ -1,5 +1,6 @@
 #include "calculate.h"
 using namespace calculateNamespace;
+using namespace stackNamespace;
 
 Calculate::Calculate() : stack(StackInList()) {
 }
