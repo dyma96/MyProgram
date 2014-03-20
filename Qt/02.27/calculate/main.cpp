@@ -5,6 +5,7 @@
 #include "stack.h"
 #include "stackInList.h"
 #include "calculate.h"
+#include "stackInMassive.h"
 
 using namespace std;
 using namespace calculateNamespace;
@@ -13,7 +14,8 @@ using namespace stackNamespace;
 /*
 int main()
 {
-    Calculate calculate = Calculate(StackInList());
+    StackInList stack;
+    Calculate calculate = Calculate(stack);
     while (true)
     {
         qDebug() << "0 - exit\n1 - add number\n2 - add sign\n3 - calculate";
@@ -28,6 +30,7 @@ int main()
             cin >> newNum;
             calculate.addNumber(newNum);
         }
+
         else if (whatDo == 2)
         {
             qDebug() << "add sign";

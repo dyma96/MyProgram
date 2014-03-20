@@ -10,7 +10,7 @@ class Calculate
 public:
     Calculate();
 
-    Calculate(stackNamespace::StackInList newStack);
+    Calculate(stackNamespace::Stack &newStack);
 
     // add number to stack.
     void addNumber(int newNumber);
@@ -25,7 +25,7 @@ private:
     //calculate 2 numbers in stack with sign, push result.
     void calculateTwoNumbers(char sign);
 
-    stackNamespace::StackInList stack;
+    stackNamespace::Stack &stack;
 };
 
 }

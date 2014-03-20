@@ -1,16 +1,29 @@
 #include "calculatetest.h"
 #include "calculate.h"
+#include "stackInList.h"
+#include "stackInMassive.h"
 #include <QtCore/QDebug>
 
-void  CalculateTest::addNumberTest()
+void  CalculateTest::addNumberListTest()
 {
-    calculateNamespace::Calculate calculator = calculateNamespace::Calculate();
+    stackNamespace::StackInList stack = stackNamespace::StackInList();
+    calculateNamespace::Calculate calculator = calculateNamespace::Calculate(stack);
     calculator.addNumber(2);
     QVERIFY(calculator.outputResult() == 2);
 }
+
+void  CalculateTest::addNumberMassiveTest()
+{
+    stackNamespace::StackInMassive stack = stackNamespace::StackInMassive();
+    calculateNamespace::Calculate calculator = calculateNamespace::Calculate(stack);
+    calculator.addNumber(2);
+    QVERIFY(calculator.outputResult() == 2);
+}
+
 void CalculateTest::CalculateTwoNumbersTest()
 {
-    calculateNamespace::Calculate calculator = calculateNamespace::Calculate();
+    stackNamespace::StackInMassive stack = stackNamespace::StackInMassive();
+    calculateNamespace::Calculate calculator = calculateNamespace::Calculate(stack);
     calculator.addNumber(2);
     calculator.addNumber(3);
     calculator.addSign('+');
@@ -19,7 +32,8 @@ void CalculateTest::CalculateTwoNumbersTest()
 
 void CalculateTest::CalculateSomeNumbersTest()
 {
-    calculateNamespace::Calculate calculator = calculateNamespace::Calculate();
+    stackNamespace::StackInList stack = stackNamespace::StackInList();
+    calculateNamespace::Calculate calculator = calculateNamespace::Calculate(stack);
     calculator.addNumber(2);
     calculator.addNumber(3);
     calculator.addSign('+');

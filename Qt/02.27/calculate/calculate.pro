@@ -19,12 +19,14 @@ TEMPLATE = app
 SOURCES += main.cpp \
     stackInList.cpp \
     calculate.cpp \
-    calculatetest.cpp
+    calculatetest.cpp \
+    stackInMassive.cpp
 
 HEADERS += \
     stackInList.h \
     stack.h \
     calculate.h \
-    calculatetest.h
+    calculatetest.h \
+    stackInMassive.h
 
 FORMS +=

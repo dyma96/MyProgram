@@ -1,6 +1,6 @@
 #pragma once
 
-namespace stackNamespace {
+namespace  stackNamespace {
 // Interface stack.
 class Stack {
 public:

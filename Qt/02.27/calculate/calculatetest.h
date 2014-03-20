@@ -6,7 +6,8 @@ class CalculateTest: public QObject
 {
     Q_OBJECT
 private slots:
-    void addNumberTest();
+    void addNumberListTest();
+    void addNumberMassiveTest();
     void CalculateTwoNumbersTest();
     void CalculateSomeNumbersTest();
 };

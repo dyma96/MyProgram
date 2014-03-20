@@ -11,13 +11,13 @@ public:
     ~StackInList();
 
     // Add element value to begin stack.
-    virtual void push(int value);
+    void push(int value) override;
 
     // Delete first element in stack and return its value.
-    virtual int pop();
+    int pop() override;
 
     // return value in head.
-    virtual int head() const;
+    int head() const override;
 
 private:
     // Element in List. Have value and pointer to next element.
