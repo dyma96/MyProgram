@@ -17,11 +17,20 @@ namespace _1calculator
             InitializeComponent();
         }
 
-        private void OnButtonClick(char i)
+        private void OnButtonClick(char ch)
         {
-            Controller.calculator.Add(i);
-            this.textBox1.Text = Controller.calculator.Print();
+            if (this.textBox1.Text.Length >= 2)
+                if (this.textBox1.Text[this.textBox1.Text.Length - 1] >= '9'
+                    || this.textBox1.Text[this.textBox1.Text.Length - 1] <= '0')
+                    this.textBox1.Text = null;
+            this.textBox1.Text += ch;
         }
 
+        private void OnButtonSignClick(char ch)
+        {
+            this.calculator.Add(Convert.ToInt32(this.textBox1.Text));
+            this.calculator.Add(ch);
+            this.textBox1.Text = this.calculator.Print();
+        }
     }
 }

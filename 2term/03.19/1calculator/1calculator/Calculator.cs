@@ -14,9 +14,34 @@ namespace _1calculator
             return this.stack.Print();
         }
 
+        public void Add(int newValue)
+        {
+            if (this.stack.IsEmpty())
+                this.stack.Push(newValue);
+            else
+            {
+                this.stack.Push(newValue);
+                Calculate();
+            }
+        }
+
         public void Add(char newValue)
         {
-            if (newValue == '+' || newValue == '-' || newValue == '*' 
+            if (this.stack.IsEmpty())
+                return;
+            int previous = this.stack.Pop();
+            if (this.stack.IsEmpty())
+            {
+                this.stack.Push(previous);
+                this.stack.Push(newValue);
+            }
+            else
+            {
+                this.stack.Push(previous);
+                this.Calculate();
+                this.stack.Push(newValue);
+            }
+/*            if (newValue == '+' || newValue == '-' || newValue == '*' 
                 || newValue == '/' || newValue == '=')
             {
                 AddSign(newValue);
@@ -46,6 +71,7 @@ namespace _1calculator
                     }
                 }
             }
+ */
         }
  
         private void AddSign(char newValue)

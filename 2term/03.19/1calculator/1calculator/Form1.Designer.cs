@@ -30,6 +30,7 @@ namespace _1calculator
         /// </summary>
         private void InitializeComponent()
         {
+            this.calculator = new Calculator();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -138,11 +139,11 @@ namespace _1calculator
             buttons[8].Text = "-";
             buttons[9].Text = "+";
             buttons[14].Text = "=";
-
+            /*
             for (int i = 0; i < numberButton; i++)
                 buttons[i].Click += ((object sender, EventArgs e)
                     => this.OnButtonClick((buttons[i].Text)[0]));
-/*
+*/
             buttons[0].Click += ((object sender, EventArgs e)
                 => this.OnButtonClick(buttons[0].Text[0]));
             buttons[1].Click += ((object sender, EventArgs e)
@@ -150,9 +151,9 @@ namespace _1calculator
             buttons[2].Click += ((object sender, EventArgs e)
                 => this.OnButtonClick((buttons[2].Text)[0]));
             buttons[3].Click += ((object sender, EventArgs e)
-                => this.OnButtonClick((buttons[3].Text)[0]));
+                => this.OnButtonSignClick((buttons[3].Text)[0]));
             buttons[4].Click += ((object sender, EventArgs e)
-                => this.OnButtonClick((buttons[4].Text)[0]));
+                => this.OnButtonSignClick((buttons[4].Text)[0]));
             buttons[5].Click += ((object sender, EventArgs e)
                 => this.OnButtonClick((buttons[5].Text)[0]));
             buttons[6].Click += ((object sender, EventArgs e)
@@ -160,9 +161,9 @@ namespace _1calculator
             buttons[7].Click += ((object sender, EventArgs e)
                 => this.OnButtonClick((buttons[7].Text)[0]));
             buttons[8].Click += ((object sender, EventArgs e)
-                => this.OnButtonClick((buttons[8].Text)[0]));
+                => this.OnButtonSignClick((buttons[8].Text)[0]));
             buttons[9].Click += ((object sender, EventArgs e)
-                => this.OnButtonClick((buttons[9].Text)[0]));
+                => this.OnButtonSignClick((buttons[9].Text)[0]));
             buttons[10].Click += ((object sender, EventArgs e)
                 => this.OnButtonClick((buttons[10].Text)[0]));
             buttons[11].Click += ((object sender, EventArgs e)
@@ -172,14 +173,15 @@ namespace _1calculator
             buttons[13].Click += ((object sender, EventArgs e)
                 => this.OnButtonClick((buttons[13].Text)[0]));
             buttons[14].Click += ((object sender, EventArgs e)
-                => this.OnButtonClick((buttons[14].Text)[0]));
-  */          
+                => this.OnButtonSignClick((buttons[14].Text)[0]));
+            
         }
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.GroupBox groupButton;
+        private Calculator calculator;
     }
 }
 
