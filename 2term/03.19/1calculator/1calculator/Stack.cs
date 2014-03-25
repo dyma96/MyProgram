@@ -2,6 +2,9 @@
 
 namespace _1calculator
 {
+    /// <summary>
+    /// Stack class.
+    /// </summary>
     public class Stack
     {
         public Stack()

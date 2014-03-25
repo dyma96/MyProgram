@@ -2,6 +2,9 @@
 
 namespace _1calculator
 {
+    /// <summary>
+    /// Class to keep and calculate two numbers.
+    /// </summary>
     public class Calculator
     {
         public Calculator()
@@ -9,11 +12,18 @@ namespace _1calculator
             stack = new Stack();
         }
 
+        /// <summary>
+        /// </summary>
+        /// <returns> String calculator. </returns>
         public string Print()
         {
             return this.stack.Print();
         }
 
+        /// <summary>
+        /// Add new number.
+        /// </summary>
+        /// <param name="newValue"> Number to add. </param>
         public void Add(int newValue)
         {
             if (this.stack.IsEmpty())
@@ -25,6 +35,10 @@ namespace _1calculator
             }
         }
 
+        /// <summary>
+        /// Add new sign.
+        /// </summary>
+        /// <param name="newValue"> Sign to add. </param>
         public void Add(char newValue)
         {
             if (this.stack.IsEmpty())
@@ -37,76 +51,23 @@ namespace _1calculator
             }
             else
             {
-                this.stack.Push(previous);
-                this.Calculate();
-                this.stack.Push(newValue);
-            }
-/*            if (newValue == '+' || newValue == '-' || newValue == '*' 
-                || newValue == '/' || newValue == '=')
-            {
-                AddSign(newValue);
-                return;
-            }
-
-            if (stack.IsEmpty())
-                stack.Push(newValue - '0');
-            else
-            {
-                int firstValue = stack.Pop();
-                if (stack.IsEmpty())
-                    stack.Push(firstValue * 10 + newValue - '0');
-                else
+                int preprevious = this.stack.Pop();
+                if (this.stack.IsEmpty())
                 {
-                    int secondValue = stack.Pop();
-                    if (stack.IsEmpty())
-                    {
-                        stack.Push(secondValue);
-                        stack.Push(firstValue);
-                        stack.Push(newValue - '0');
-                    }
-                    else
-                    {
-                        stack.Push(secondValue);
-                        stack.Push(firstValue * 10 + newValue - '0');
-                    }
-                }
-            }
- */
-        }
- 
-        private void AddSign(char newValue)
-        {
-            if (stack.IsEmpty())
-                return;
-            if (newValue == '=')
-                Calculate();
-            else
-            {
-                int firstValue = stack.Pop();
-                if (stack.IsEmpty())
-                {
-                    stack.Push(firstValue);
-                    stack.Push(newValue);
+                    this.stack.Push(preprevious);
+                    this.stack.Push(newValue);
                 }
                 else
                 {
-                    int secondValue = stack.Pop();
-                    if (stack.IsEmpty())
-                    {
-                        stack.Push(secondValue);
-                        stack.Push(newValue);
-                    }
-                    else
-                    {
-                        stack.Push(secondValue);
-                        stack.Push(firstValue);
-                        Calculate();
-                        stack.Push(newValue);
-                    }
+                    this.stack.Push(preprevious);
+                    this.stack.Push(previous);
+                    Calculate();
+                    this.stack.Push(newValue);
                 }
             }
         }
-
+ 
+       
         private void Calculate()
         {
             int rightValue = 0;
@@ -133,6 +94,7 @@ namespace _1calculator
             stack.Push(CalculateTwoNumbers(leftValue, rightValue, sign));
         }
 
+        // Calculate left 'sign' right.
         private int CalculateTwoNumbers(int left, int right, char sign)
         {
             if (sign == '+')
@@ -143,7 +105,7 @@ namespace _1calculator
                 return left * right;
             if (sign == '/' && right != 0)
                 return left / right;
-
+            
             return 0;
         }
 
