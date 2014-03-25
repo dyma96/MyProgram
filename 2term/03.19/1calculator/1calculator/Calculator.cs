@@ -67,6 +67,10 @@ namespace _1calculator
             }
         }
  
+        public void Clean()
+        {
+            stack.Clean();
+        }
        
         private void Calculate()
         {

@@ -51,32 +51,37 @@ namespace _1calculator
             return str;
         }
 
-       private ListElement head;
+        public void Clean()
+        {
+            head = null;
+        }
 
-       private class ListElement
-       {
-           public ListElement()
-           { }
+        private ListElement head;
 
-           public ListElement(int value, ListElement next)
-           {
-               this.value = value;
-               this.next = next;
-           }
+        private class ListElement
+        {
+            public ListElement()
+            { }
 
-           public int Value()
-           {
-               return this.value;
-           }
+            public ListElement(int value, ListElement next)
+            {
+                this.value = value;
+                this.next = next;
+            }
 
-           public ListElement Next()
-           {
-               return this.next;
-           }
+            public int Value()
+            {
+                return this.value;
+            }
 
-           private int value;
-           private ListElement next;
-       }
+            public ListElement Next()
+            {
+                return this.next;
+            }
 
+            private int value;
+            private ListElement next;
+        }
+    
     }
 }

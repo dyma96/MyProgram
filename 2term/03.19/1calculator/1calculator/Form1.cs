@@ -35,7 +35,11 @@ namespace _1calculator
                     return;
                 }
                 else
+                {
+                    if (this.textBox1.Text[this.textBox1.Text.Length - 1] == '=')
+                        calculator.Clean();
                     this.textBox1.Text = null;
+                }
             this.textBox1.Text += ch;
         }
 
