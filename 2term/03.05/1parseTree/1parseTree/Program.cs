@@ -8,12 +8,12 @@ namespace _1parseTree
         {
             try
             {
-                ParseTree tree = new ParseTree(new System.IO.StreamReader("..//..//in.txt"));
+                Tree tree = new Tree(new System.IO.StreamReader("..//..//in.txt"));
                 tree.Print();
                 Console.WriteLine();
                 Console.WriteLine(tree.Result());
             }
-            catch (ExeptionParseTree exept)
+            catch (ExceptionTree exept)
             {
                 Console.WriteLine("Error." + exept.Message);
                 Console.WriteLine("Format: ( sign ( operand ) ( operand ) )");

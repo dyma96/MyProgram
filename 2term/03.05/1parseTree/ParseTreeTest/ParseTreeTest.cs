@@ -3,12 +3,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using System.IO;
 
-namespace NParseTreeTest
+namespace NTreeTest
 {
     using _1parseTree;
 
     [TestClass]
-    public class ParseTreeTest
+    public class TreeTest
     {
         [TestInitialize]
         public void Initialize()
@@ -24,11 +24,11 @@ namespace NParseTreeTest
             fWrite.Close();
         
             fRead = fInfo.OpenText();
-            ParseTree tree = new ParseTree(fRead);
+            Tree tree = new Tree(fRead);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ExeptionParseTree))]
+        [ExpectedException(typeof(ExceptionTree))]
         public void ExeptionTest()
         {
             StreamWriter fWrite = fInfo.CreateText();
@@ -36,7 +36,7 @@ namespace NParseTreeTest
             fWrite.Close();
             
             fRead = fInfo.OpenText();
-            ParseTree tree = new ParseTree(fRead);
+            Tree tree = new Tree(fRead);
         }
 
         [TestMethod]
@@ -47,8 +47,20 @@ namespace NParseTreeTest
             fWrite.Close();
          
             fRead = fInfo.OpenText();
-            ParseTree tree = new ParseTree(fRead);
+            Tree tree = new Tree(fRead);
             Assert.IsTrue(tree.Result() == 3);
+        }
+
+        [TestMethod]
+        public void HardResultTest()
+        {
+            StreamWriter fWrite = fInfo.CreateText();
+            fWrite.WriteLine("( + 1 ( * ( / 6 3 ) ( + 2 3 ) ) )");
+            fWrite.Close();
+
+            fRead = fInfo.OpenText();
+            Tree tree = new Tree(fRead);
+            Assert.IsTrue(tree.Result() == (5 - 4 + 6 / 3 * (2 + 3)));
         }
 
         [TestCleanup]

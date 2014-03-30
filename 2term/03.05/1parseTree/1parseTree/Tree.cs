@@ -5,14 +5,16 @@ using Position = System.Int32;
 
 namespace _1parseTree
 {
+    /// <summary>
+    /// Class parse tree.
+    /// </summary>
     public class Tree
     {
         public Tree(System.IO.StreamReader file)
         {
-            root = createTreeFromFile(file, root);
+            root = CreateTreeFromFile(file, root);
         }
 
-        
         /// <summary>
         /// Print tree.
         /// </summary>
@@ -22,13 +24,9 @@ namespace _1parseTree
         }
 
         /// <summary>
+        /// Result of calculate.
         /// </summary>
-        /// <returns> Root this tree. </returns>
-        public int Root
-        {
-            get { return root.Value; }
-        }
-
+        /// <returns> Result. </returns>
         public int Result()
         {
             if (root == null)
@@ -36,8 +34,16 @@ namespace _1parseTree
             return root.Calculate();
         }
 
+        /// <summary>
+        /// </summary>
+        /// <returns> Root this tree. </returns>
+        private int Root
+        {
+            get { return root.Value; }
+        }
 
-        private TreeElement createTreeFromFile
+        // Create Tree from file.
+        private TreeElement CreateTreeFromFile
             (System.IO.StreamReader file, TreeElement treeElement)
         {
             int value = 0;
@@ -46,24 +52,26 @@ namespace _1parseTree
 
             if (file.EndOfStream)
                 return treeElement;
-            int ch = file.Read(); //  '(' или цифра
+            int ch = file.Read(); //  '(' или цифра или ' '
+            if (ch == ' ')
+                ch = file.Read(); //  '(' или цифра
             if (ch == '(')
             {
                 ch = file.Read();  // ' '
                 if (ch != ' ')
-                    throw new ExeptionParseTree("Waiting ' '.");
+                    throw new ExceptionTree("Waiting ' '.");
 
                 ch = file.Read();  // sign
                 if (ch != '+' && ch != '-' && ch != '*' && ch != '/')
-                    throw new ExeptionParseTree("Waiting sign.");
+                    throw new ExceptionTree("Waiting sign.");
 
                 value = ch;
                 ch = file.Read();  // ' '
                 if (ch != ' ')
-                    throw new ExeptionParseTree("Waiting ' '.");
+                    throw new ExceptionTree("Waiting ' '.");
 
-                left = createTreeFromFile(file, left);
-                right = createTreeFromFile(file, right);
+                left = CreateTreeFromFile(file, left);
+                right = CreateTreeFromFile(file, right);
 
                 if (value == '+')
                     treeElement = new Add(value, left, right);
@@ -73,6 +81,14 @@ namespace _1parseTree
                     treeElement = new Multiply(value, left, right);
                 if (value == '/')
                     treeElement = new Divide(value, left, right);
+                ch = file.Read(); // ')' или ' '
+                if (ch == ' ')
+                    ch = file.Read(); // ')'
+                if (ch != ')')
+                    throw new ExceptionTree("Waiting ).");
+               /* ch = file.Read(); // ' '
+                if (ch != ' ')
+                    throw new ExceptionTree("Waiting ' '."); */
             }
 
             else if (ch <= '9' && ch >= '0')
@@ -84,13 +100,13 @@ namespace _1parseTree
                     ch = file.Read();
                 }
                 if (ch != ' ')
-                    throw new ExeptionParseTree("Waiting ' '.");
+                    throw new ExceptionTree("Waiting ' '.");
 
                 value = number;
-                treeElement = new Value(value, null, null);
+                treeElement = new Value(value);
             }
             else
-                throw new ExeptionParseTree("Waiting '(' or number.");
+                throw new ExceptionTree("Waiting '(' or number.");
             return treeElement;
         }
         
@@ -122,28 +138,15 @@ namespace _1parseTree
             /// <returns> Result calculate left and right children. </returns>
             public virtual int Calculate()
             {
-                return 0;
+                return 5;
+//                return 0;
             }
             
             /// <summary>
             /// Print tree in recursion.
             /// </summary>
-            public void Print()
+            public virtual void Print()
             {
-                if (left != null && right != null)
-                    Console.Write("(");
-
-                if (left != null)
-                    left.Print();
-                if (left == null && right == null)
-                    Console.Write(value + " ");
-                else
-                    Console.Write((char)value + " ");
-                if (right != null)
-                    right.Print();
-
-                if (left != null && right != null)
-                    Console.Write(")");
             }
 
             /// <summary>
@@ -179,7 +182,23 @@ namespace _1parseTree
         /// Some class Operation and Value. 
         /// </summary>
         
-        private class Add: TreeElement
+        private class Sign: TreeElement
+        {
+            public Sign(int value, TreeElement left, TreeElement right)
+                : base(value, left, right)
+            { }
+
+            public override void Print()
+            {
+                Console.Write("(");
+                Left.Print();
+                Console.Write((char)Value);
+                Right.Print();
+                Console.Write(")");
+            }
+        }
+        
+        private class Add: Sign
         {
             public Add(int value, TreeElement left, TreeElement right)
                 : base(value, left, right)
@@ -188,12 +207,12 @@ namespace _1parseTree
             override public int Calculate() 
             {
                 if (Left == null || Right == null)
-                    throw new ExeptionParseTree("Can't calculate. Error in tree");
-                return Left.Value + Right.Value;
+                    throw new ExceptionTree("Can't calculate. Error in tree");
+                return Left.Calculate() + Right.Calculate();
             }
         }
 
-        private class Subtract : TreeElement
+        private class Subtract : Sign
         {
             public Subtract(int value, TreeElement left, TreeElement right)
                 : base(value, left, right)
@@ -202,12 +221,12 @@ namespace _1parseTree
             public override int Calculate()
             {
                 if (Left == null || Right == null)
-                    throw new ExeptionParseTree("Can't calculate. Error in tree");
-                return Left.Value - Right.Value;
+                    throw new ExceptionTree("Can't calculate. Error in tree");
+                return Left.Calculate() - Right.Calculate();
             }
         }
 
-        private class Multiply : TreeElement
+        private class Multiply : Sign
         {
             public Multiply(int value, TreeElement left, TreeElement right)
                 : base(value, left, right)
@@ -216,12 +235,12 @@ namespace _1parseTree
             public override int Calculate()
             {
                 if (Left == null || Right == null)
-                    throw new ExeptionParseTree("Can't calculate. Error in tree");
-                return Left.Value * Right.Value;
+                    throw new ExceptionTree("Can't calculate. Error in tree");
+                return Left.Calculate() * Right.Calculate();
             }
         }
 
-        private class Divide : TreeElement
+        private class Divide : Sign
         {
             public Divide(int value, TreeElement left, TreeElement right)
                 : base(value, left, right)
@@ -230,21 +249,30 @@ namespace _1parseTree
             public override int Calculate()
             {
                 if (Left == null || Right == null)
-                    throw new ExeptionParseTree("Can't calculate. Error in tree");
-                return Left.Value / Right.Value;
+                    throw new ExceptionTree("Can't calculate. Error in tree");
+                int rightCalculate = Right.Calculate();
+                if (rightCalculate == 0)
+                    throw new ExceptionTree("Division by 0 is bad!");
+                return Left.Calculate() / rightCalculate;
             }
         }
 
         private class Value: TreeElement
         {
-            public Value(int value, TreeElement left, TreeElement right)
-                : base(value, left, right)
+            public Value(int value)
+                : base(value, null, null)
             { }
 
             public override int Calculate()
             {
                 return Value;
             }
+
+            public override void Print()
+            {
+                Console.Write(Value);
+            }
+
         }
     }
 }
