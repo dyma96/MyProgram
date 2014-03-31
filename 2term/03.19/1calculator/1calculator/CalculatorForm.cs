@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace _1calculator
 {
-    public partial class Form1 : Form
+    public partial class CalculatorForm : Form
     {
-        public Form1()
+        public CalculatorForm()
         {
             InitializeComponent();
         }
@@ -20,15 +20,15 @@ namespace _1calculator
         private void OnButtonClick(char ch)
         {
             if (ch < '0' || ch > '9')
-                if (this.textBox1.Text.Length == 0)
+                if (this.textBox.Text.Length == 0)
                     return;
-                else if (this.textBox1.Text.Length == 1)
+                else if (this.textBox.Text.Length == 1)
                 {
                     OnButtonSignClick(ch);
-                  return;
+                    return;
                 }
 
-            if (this.textBox1.Text.Length >= 2)
+            if (this.textBox.Text.Length >= 2)
                 if (ch < '0' || ch > '9')
                 {
                     OnButtonSignClick(ch);
@@ -36,23 +36,23 @@ namespace _1calculator
                 }
                 else
                 {
-                    if (this.textBox1.Text[this.textBox1.Text.Length - 1] == '=')
+                    if (this.textBox.Text[this.textBox.Text.Length - 1] == '=')
                         calculator.Clean();
-                    this.textBox1.Text = null;
+                    this.textBox.Text = null;
                 }
-            this.textBox1.Text += ch;
+            this.textBox.Text += ch;
         }
 
         private void OnButtonSignClick(char ch)
         {
-            if (this.textBox1.Text.Length < 2
-                || (this.textBox1.Text.Length >= 2 
-                && this.textBox1.Text[this.textBox1.Text.Length - 1] >= '0' 
-                && this.textBox1.Text[this.textBox1.Text.Length - 1] <= '9'))
+            if (this.textBox.Text.Length < 2
+                || (this.textBox.Text.Length >= 2 
+                && this.textBox.Text[this.textBox.Text.Length - 1] >= '0' 
+                && this.textBox.Text[this.textBox.Text.Length - 1] <= '9'))
                 
-                this.calculator.Add(Convert.ToInt32(this.textBox1.Text));
+                this.calculator.Add(Convert.ToInt32(this.textBox.Text));
             this.calculator.Add(ch);
-            this.textBox1.Text = this.calculator.Print();
+            this.textBox.Text = this.calculator.Print();
         }
 
         private void InitializeMyGroupBox()
@@ -65,7 +65,7 @@ namespace _1calculator
                 buttons[i].Name = i.ToString();
                 buttons[i].Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
                 buttons[i].Dock = System.Windows.Forms.DockStyle.Fill;
-                this.tableLayoutPanel2.Controls.Add(buttons[i], i % 5, i / 5);
+                this.tableLayoutPanelWithButtons.Controls.Add(buttons[i], i % 5, i / 5);
             }
             buttons[2].Text = "9";
             buttons[1].Text = "8";
