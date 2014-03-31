@@ -12,9 +12,7 @@ namespace _2HashTableWithFunction
     {
         public HashTable(int size)
         {
-            bucket = new List[size];
-            for (int i = 0; i < size; i++)
-                bucket[i] = new List();
+            Init(size);
             hashFunction = new HashFunctionClass0();
         }
         
@@ -25,10 +23,7 @@ namespace _2HashTableWithFunction
         /// <param name="numberFunction"></param>
         public HashTable(int size, HashFunctionInterface func)
         {
-            bucket = new List[size];
-            for (int i = 0; i < size; i++)
-                bucket[i] = new List();
-
+            Init(size);
             hashFunction = func;
         }
 
@@ -53,10 +48,8 @@ namespace _2HashTableWithFunction
         public void DeleteElement(ElementType deleteElement)
         {
             if (!Exist(deleteElement))
-            {
-                Console.WriteLine("Element not exist");
-                return;
-            }
+                throw new ExceptionHash("Delete element don't exist.");
+
             bucket[hashFunction.Function(deleteElement) % bucket.Length].DeleteElement(deleteElement);
         }
         
@@ -102,6 +95,14 @@ namespace _2HashTableWithFunction
             }
             hashFunction = func;
             bucket = temp;
+        }
+
+        // Initialize bucket.
+        private void Init(int size)
+        {
+            bucket = new List[size];
+            for (int i = 0; i < size; i++)
+                bucket[i] = new List();
         }
 
         private List[] bucket;

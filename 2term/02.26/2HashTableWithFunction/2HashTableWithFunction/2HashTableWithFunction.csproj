@@ -41,8 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExceptionHash.cs" />
     <Compile Include="Hash.cs" />
-    <Compile Include="HashFunction0.cs" />
+    <Compile Include="HashFunctionClass0.cs" />
     <Compile Include="HashFunctionClass1.cs" />
     <Compile Include="HashFunctionInterface.cs" />
     <Compile Include="List.cs" />

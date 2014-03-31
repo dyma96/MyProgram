@@ -33,10 +33,10 @@ namespace Hash.Test
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ExceptionHash))]
         public void DeleteElementInEmptyHashTest()
         {
             hash.DeleteElement(1);
-            Assert.IsFalse(hash.Exist(1));
         }
 
         [TestMethod]
