@@ -10,17 +10,21 @@ using System.Windows.Forms;
 
 namespace _2watch
 {
-    public partial class Form1 : Form
+    public partial class WatchForm : Form
     {
-        public Form1()
+        public WatchForm()
         {
             InitializeComponent();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void TimerTick(object sender, EventArgs e)
         {
-            this.label1.Text = string.Format("{0}:{1}:{2}",
-               DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
+              this.label1.Text = string.Format("{0:H:mm:ss}", DateTime.Now);
+        }
+
+        private void WatchForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace _2watch
 {
-    partial class Form1
+    partial class WatchForm
     {
         /// <summary>
         /// Требуется переменная конструктора.
@@ -39,7 +39,7 @@
             // 
             this.timer1.Enabled = true;
             this.timer1.Interval = 25;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timer1.Tick += new System.EventHandler(this.TimerTick);
             // 
             // label1
             // 
@@ -67,15 +67,16 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(284, 500);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
-            // Form1
+            // WatchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
             this.Controls.Add(this.flowLayoutPanel1);
-            this.MinimumSize = new System.Drawing.Size(250, 100);
-            this.Name = "Watch";
+            this.MinimumSize = new System.Drawing.Size(260, 100);
+            this.Name = "WatchForm";
             this.Text = "Watch";
+            this.Load += new System.EventHandler(this.WatchForm_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
