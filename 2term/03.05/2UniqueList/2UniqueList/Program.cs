@@ -12,7 +12,7 @@ namespace _2UniqueList
             {
                 list.AddElement(2);
             }
-            catch (ExceptionUniqueList except)
+            catch (ExceptionUniqueListToAdd except)
             {
                 Console.WriteLine("Error: " + except.Message);
             }

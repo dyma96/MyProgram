@@ -7,21 +7,35 @@ namespace NUniqueListTest
     [TestClass]
     public class UniqueListTest
     {
+        [TestInitialize]
+        public void Initialize()
+        {
+            list = new UniqueList();
+        }
+
         [TestMethod]
-        [ExpectedException(typeof(ExceptionUniqueList))]
+        [ExpectedException(typeof(ExceptionUniqueListToAdd))]
         public void AddExistElementTest()
         {
-            UniqueList list = new UniqueList();
             list.AddElement(2);
             list.AddElement(2);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ExceptionUniqueList))]
+        [ExpectedException(typeof(ExceptionUniqueListToDelete))]
         public void DeleteNotExistElementTest()
         {
-            UniqueList list = new UniqueList();
             list.DeleteElement(3);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(ExceptionUniqueListToAdd))]
+        public void AddElementToPositionTest()
+        {
+            list.AddElementToPosition(2, 0);
+            list.AddElementToPosition(2, 1);
+        }
+
+        private UniqueList list;
     }
 }
