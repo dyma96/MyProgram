@@ -13,11 +13,19 @@ MainWindow::MainWindow(QWidget *parent) :
 
     scene = new QGraphicsScene();
     ui->graphicsView->setAlignment(Qt::AlignLeft | Qt::AlignTop);
-    gun = new ovalGun(ui->graphicsView->width(), scene->width(), scene->height());
+
+    gun = new ovalGun(ui->graphicsView->width(), ui->graphicsView->width(), ui->graphicsView->height());
     scene->addItem(gun);
+
+    ball= new cannonball(ui->graphicsView->width() / 10, 10, ui->graphicsView->width(), ui->graphicsView->height());
+    scene->addItem(ball);
+
     ui->graphicsView->setScene(scene);
 
     connect(ui->up, &QPushButton::clicked, this, &MainWindow::onUpClicked);
+    connect(ui->down, &QPushButton::clicked, this, &MainWindow::onDownClicked);
+    connect(ui->shoot, &QPushButton::clicked, this, &MainWindow::onShootClicked);
+
 }
 
 MainWindow::~MainWindow()
@@ -31,8 +39,24 @@ void MainWindow::onUpClicked()
     scene->invalidate(gun->boundingRect());
 }
 
-void MainWindow::on_down_clicked()
+void MainWindow::onDownClicked()
 {
-    gun->CornerDown();
+    gun->cornerDown();
     scene->invalidate(gun->boundingRect());
+}
+
+void MainWindow::onShootClicked()
+{
+    QElapsedTimer timer;
+    timer.start();
+    int i = 0;
+    while (i < 10)
+    {
+        if (timer.elapsed() > i * 100)
+        {
+            ball->setPos(timer.elapsed() / 100);
+            scene->invalidate(ball->boundingRect());
+            i++;
+        }
+    }
 }

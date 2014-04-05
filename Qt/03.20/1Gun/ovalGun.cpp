@@ -1,9 +1,9 @@
 #include "ovalGun.h"
 #include <QTransform>
 #include <QColor>
+#include <QWidget>
 #include <QtCore/qmath.h>
 #include <QDebug>
-#include <QWidget>
 
 ovalGun::ovalGun()
 {
@@ -35,6 +35,7 @@ void ovalGun::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
     transformation->translate(0, widget->height() - 1);
     transformation->rotate(-90);
     painter->setTransform(*transformation);
+
 // draw Pie.
     transformation->translate(-radius * 2, -radius);
     painter->setTransform(*transformation);
@@ -48,10 +49,19 @@ void ovalGun::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
     transformation->translate(-widthBarrel / 2 , 0);
     painter->setTransform(*transformation);
     painter->drawRect(0, 0, widthBarrel, heightBarrel);
-    transformation->rotate(corner);
-    transformation->translate(widthBarrel / 2 , heightBarrel);
+    transformation->translate(widthBarrel / 2, heightBarrel);
+//    transformation->rotate(corner);
+//    transformation->translate(widthBarrel / 2, heightBarrel);
     painter->setTransform(*transformation);
+    //    painter->drawEllipse(0, 0, 10, 10);
+
+    qDebug() << "Draw";
 }
+/*
+void ovalGun::shoot()
+{
+    ball->timerStart();
+}*/
 
 void ovalGun::cornerUp()
 {
@@ -59,7 +69,8 @@ void ovalGun::cornerUp()
         return;
     corner += 2;
 }
-void ovalGun::CornerDown()
+
+void ovalGun::cornerDown()
 {
     if (corner <= 2)
         return;

@@ -19,12 +19,14 @@ public:
 private slots:
     void onUpClicked();
 
-    void on_down_clicked();
+    void onDownClicked();
+
+    void onShootClicked();
 
 private:
     Ui::MainWindow *ui;
-    //QGraphicsView *graphicsView;
     QGraphicsScene *scene;
     ovalGun *gun;
+    cannonball *ball;
 };
 

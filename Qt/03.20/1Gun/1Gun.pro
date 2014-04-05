@@ -15,10 +15,10 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainWindow.cpp \
     ovalGun.cpp \
-    myGraphicsView.cpp
+    cannonball.cpp
 
 HEADERS  += mainWindow.h \
     ovalGun.h \
-    myGraphicsView.h
+    cannonball.h
 
 FORMS    += mainWindow.ui

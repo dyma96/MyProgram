@@ -2,6 +2,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsItem>
 #include <QPainter>
+#include "cannonball.h"
 
 class ovalGun : public QGraphicsItem
 {
@@ -11,7 +12,8 @@ public:
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void cornerUp();
-    void CornerDown();
+    void cornerDown();
+//    void shoot();
 
 private:
     int radius;
@@ -20,6 +22,4 @@ private:
     int heightBarrel;
     int widthRect;
     int heightRect;
-
-//    int beginSpeed;
 };
