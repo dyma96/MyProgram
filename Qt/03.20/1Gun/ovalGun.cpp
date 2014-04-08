@@ -27,6 +27,7 @@ ovalGun::ovalGun(int rad, int width = 300, int height = 300)
 
 QRectF ovalGun::boundingRect() const
 {
+//    qDebug() << widthRect << heightRect;
     return QRectF(0, 0, widthRect, heightRect);
 }
 void ovalGun::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
@@ -50,18 +51,10 @@ void ovalGun::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
     painter->setTransform(*transformation);
     painter->drawRect(0, 0, widthBarrel, heightBarrel);
     transformation->translate(widthBarrel / 2, heightBarrel);
-//    transformation->rotate(corner);
-//    transformation->translate(widthBarrel / 2, heightBarrel);
+    transformation->rotate(corner);
     painter->setTransform(*transformation);
-    //    painter->drawEllipse(0, 0, 10, 10);
-
-    qDebug() << "Draw";
+    painter->drawLine(0, 0, 100, 100);
 }
-/*
-void ovalGun::shoot()
-{
-    ball->timerStart();
-}*/
 
 void ovalGun::cornerUp()
 {
@@ -75,4 +68,19 @@ void ovalGun::cornerDown()
     if (corner <= 2)
         return;
     corner -= 2;
+}
+
+int ovalGun::getHeightBarrel()
+{
+    return heightBarrel;
+}
+
+int ovalGun::getRadius()
+{
+    return radius;
+}
+
+int ovalGun::getCorner()
+{
+    return corner;
 }

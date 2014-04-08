@@ -8,7 +8,9 @@ cannonball::cannonball()
 {
 }
 
-cannonball::cannonball(int rad = 50, int speed = 10, int widthRectBall = 300, int heightRectBall = 300)
+cannonball::cannonball(double rad = 50, double speed = 20, double BeginCorner = 45,
+                       double beginPositionX = 10, double beginPositionY = 10,
+                       double widthRectBall = 300, double heightRectBall = 300)
 {
     qDebug() << rad;
     radiusBall = rad;
@@ -19,9 +21,10 @@ cannonball::cannonball(int rad = 50, int speed = 10, int widthRectBall = 300, in
     g = 10;
     widthRect = widthRectBall * 2;
     heightRect = heightRectBall * 2;
-    beginPosition = QPoint(10,10);
-
-//    position = beginPosition;
+    beginPosition = QPoint(beginPositionX, beginPositionY);
+    timer.invalidate();
+    position = QPoint(0, 0);
+    corner = BeginCorner;
 }
 
 QRectF cannonball::boundingRect() const
@@ -33,20 +36,37 @@ void cannonball::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
 {
     QTransform *transformation = new QTransform();
     transformation->translate(0, widget->height() - 1);
-    transformation->rotate(-90);
+    transformation->rotate(-corner);
+    transformation->translate(beginPosition.x() + beginPosition.y(), 0);
     painter->setTransform(*transformation);
-//    painter->drawEllipse(100,100, radiusBall,radiusBall);
-    painter->drawEllipse(position.x(), position.y(), radiusBall, radiusBall);
-    qDebug() << "y" << position.y() << "x" << position.x();
+    painter->drawEllipse(position.y(), position.x(), radiusBall, radiusBall);
 }
 
-void cannonball::setPos(int time)
+void cannonball::setPos(double time)
 {
-//    qDebug() << time << "Ololo paint ball";
-    position.setY(beginSpeed.y() * time + beginPosition.y());
-    position.setX((-beginSpeed.x() * time + g * time * time / 2 + beginPosition.x()) % 100);
+    startTimer();
+    if (time == 0)
+        time = timer.elapsed() / 300.0;
+    position.setY(beginSpeed.x() * time);
+    position.setX(-beginSpeed.y() * time + g * time * time / 2.0);
     qDebug() << position;
-    position.setX(100);
-    position.setY(100);
+}
 
+void cannonball::startTimer()
+{
+    if (!timer.isValid())
+        timer.start();
+}
+
+void cannonball::setCorner(int newCorner)
+{
+    corner = newCorner;
+}
+
+bool cannonball::isBallInScene()
+{
+    if (position.x() >= 0 && position.x() <= 100
+            && position.y() >= 0 && position.y() <= 100)
+        return true;
+    return false;
 }

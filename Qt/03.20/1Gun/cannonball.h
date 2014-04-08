@@ -9,20 +9,36 @@ class cannonball : public QGraphicsItem
 {
 public:
     cannonball();
-    cannonball(int rad, int speed, int widthRectBall, int heightRectBall);
+    cannonball(double rad, double speed, double BeginCorner,
+               double beginPositionX, double beginPositionY,
+               double widthRectBall, double heightRectBall);
+
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+
+    /// Return posituon ball.
     QPoint position;
-    void setPos(int time);
+
+    /// Set position with time.
+    void setPos(double time);
+
+    /// Start timer, if it's not start.
+    void startTimer();
+
+    /// Set new corner.
+    void setCorner(int newCorner);
+
+    /// Return true if ball is in scene.
+    bool isBallInScene();
 
 private:
     QPoint beginSpeed;
     QPoint beginPosition;
-    int corner;
-    int radiusBall;
-    int time;
-    int g;
-    int widthRect;
-    int heightRect;
-
+    double corner;
+    double radiusBall;
+    double time;
+    double g = 20.0;
+    double widthRect;
+    double heightRect;
+    QElapsedTimer timer;
 };
