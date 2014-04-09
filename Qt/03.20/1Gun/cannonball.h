@@ -4,20 +4,18 @@
 #include <QPainter>
 #include <QPoint>
 #include <QElapsedTimer>
+#include <QTransform>
 
 class cannonball : public QGraphicsItem
 {
 public:
     cannonball();
-    cannonball(double rad, double speed, double BeginCorner,
-               double beginPositionX, double beginPositionY,
-               double widthRectBall, double heightRectBall);
+    cannonball(double rad, double speed, double beginCorner,
+               double beginTranslate, double widthRectBall, double heightRectBall);
 
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
-    /// Return posituon ball.
-    QPoint position;
 
     /// Set position with time.
     void setPos(double time);
@@ -31,14 +29,29 @@ public:
     /// Return true if ball is in scene.
     bool isBallInScene();
 
+    /// Return true if ball is in target.
+    bool isBallInTarget(QRect target);
+
+    /// Increase speed.
+    void speedUp();
+
+    /// Reduce speed.
+    void speedDown();
+
 private:
+    void translate(int height);
+    void translateSpeed(int newCorner);
+
     QPoint beginSpeed;
     QPoint beginPosition;
     double corner;
     double radiusBall;
     double time;
-    double g = 20.0;
+    QPoint g;
     double widthRect;
     double heightRect;
     QElapsedTimer timer;
+    QPoint position;
+    QTransform transformation;
+    double beginTranslation;
 };

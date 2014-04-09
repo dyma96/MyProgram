@@ -2,7 +2,6 @@
 #include <QTransform>
 #include <QColor>
 #include <QWidget>
-#include <QtCore/qmath.h>
 #include <QDebug>
 
 ovalGun::ovalGun()
@@ -53,7 +52,6 @@ void ovalGun::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
     transformation->translate(widthBarrel / 2, heightBarrel);
     transformation->rotate(corner);
     painter->setTransform(*transformation);
-    painter->drawLine(0, 0, 100, 100);
 }
 
 void ovalGun::cornerUp()
@@ -70,17 +68,22 @@ void ovalGun::cornerDown()
     corner -= 2;
 }
 
-int ovalGun::getHeightBarrel()
+int ovalGun::getHeightBarrel() const
 {
     return heightBarrel;
 }
 
-int ovalGun::getRadius()
+int ovalGun::getWidthBarrel() const
+{
+    return widthBarrel;
+}
+
+int ovalGun::getRadius() const
 {
     return radius;
 }
 
-int ovalGun::getCorner()
+int ovalGun::getCorner() const
 {
     return corner;
 }

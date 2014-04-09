@@ -2,7 +2,6 @@
 #include <QGraphicsScene>
 #include <QGraphicsItem>
 #include <QPainter>
-#include "cannonball.h"
 
 class ovalGun : public QGraphicsItem
 {
@@ -20,13 +19,16 @@ public:
     void cornerDown();
 
     /// Return height barrel.
-    int getHeightBarrel();
+    int getHeightBarrel() const;
+
+    /// Return height barrel.
+    int getWidthBarrel() const;
 
     /// Return radius.
-    int getRadius();
+    int getRadius() const;
 
     /// Return corner barrel.
-    int getCorner();
+    int getCorner() const;
 
 private:
     int radius;

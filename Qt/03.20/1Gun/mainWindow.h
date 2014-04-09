@@ -4,6 +4,8 @@
 #include <QGraphicsView>
 #include <QTimer>
 #include "ovalGun.h"
+#include "cannonball.h"
+#include "targetClass.h"
 
 namespace Ui {
 class MainWindow;
@@ -30,12 +32,18 @@ private slots:
     /// Do, when timer 'timeout'.
     void funcTimer();
 
+    ///
+    void onPowerDownClicked();
+
+    ///
+    void onPowerUpClicked();
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     ovalGun *gun;
     cannonball *ball;
     QTimer timer;
-
+    targetClass *target;
 };
 

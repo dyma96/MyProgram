@@ -18,16 +18,21 @@ MainWindow::MainWindow(QWidget *parent) :
     gun = new ovalGun(ui->graphicsView->width(), scene->width(), scene->height());
     scene->addItem(gun);
 
-    ball= new cannonball(ui->graphicsView->width() / 10.0, 20.0, 45.0,
-                         gun->getRadius(), gun->getHeightBarrel(),
+    ball= new cannonball(gun->getWidthBarrel(), 50.0, 45.0,
+                         gun->getRadius() + gun->getHeightBarrel(),
                          (double)scene->width(), (double)scene->height());
     scene->addItem(ball);
+
+    target = new targetClass(40, scene->width(), scene->height());
+    scene->addItem(target);
 
     ui->graphicsView->setScene(scene);
 
     connect(ui->up, &QPushButton::clicked, this, &MainWindow::onUpClicked);
     connect(ui->down, &QPushButton::clicked, this, &MainWindow::onDownClicked);
     connect(ui->shoot, &QPushButton::clicked, this, &MainWindow::onShootClicked);
+    connect(ui->powerDown, &QPushButton::clicked, this, &MainWindow::onPowerDownClicked);
+    connect(ui->powerUp, &QPushButton::clicked, this, &MainWindow::onPowerUpClicked);
 }
 
 MainWindow::~MainWindow()
@@ -35,6 +40,7 @@ MainWindow::~MainWindow()
     delete ui;
     delete gun;
     delete ball;
+    delete target;
 }
 
 void MainWindow::onUpClicked()
@@ -62,9 +68,19 @@ void MainWindow::funcTimer()
 {
     ball->setPos(0.0);
     scene->invalidate(ball->boundingRect());
-    if (!ball->isBallInScene())
+    if (ball->isBallInTarget(target->getPosition()))
     {
         timer.stop();
         return;
     }
+}
+
+void MainWindow::onPowerDownClicked()
+{
+    ball->speedDown();
+}
+
+void MainWindow::onPowerUpClicked()
+{
+    ball->speedUp();
 }
