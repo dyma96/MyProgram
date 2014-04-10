@@ -23,20 +23,25 @@ public:
     /// Start timer, if it's not start.
     void startTimer();
 
+    ///
+    void stopTimer();
+
     /// Set new corner.
     void setCorner(int newCorner);
 
-    /// Return true if ball is in scene.
-    bool isBallInScene();
+//    /// Return true if ball is in scene.
+//    bool isBallInScene();
 
-    /// Return true if ball is in target.
-    bool isBallInTarget(QRect target);
+//    /// Return true if ball is in target.
+//    bool isBallInTarget(QRect target);
 
     /// Increase speed.
     void speedUp();
 
     /// Reduce speed.
     void speedDown();
+
+    QPoint getPosition();
 
 private:
     void translate(int height);

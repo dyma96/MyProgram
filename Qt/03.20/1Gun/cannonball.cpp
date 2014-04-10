@@ -12,7 +12,6 @@ cannonball::cannonball()
 cannonball::cannonball(double rad = 50, double speed = 20, double beginCorner = 45,
                        double beginTranslate = 10, double widthRectBall = 300, double heightRectBall = 300)
 {
-//    qDebug() << rad;
     radiusBall = rad;
     beginSpeed = QPoint(speed, 0);
     position = QPoint(0,0);
@@ -78,27 +77,21 @@ void cannonball::startTimer()
         timer.start();
 }
 
+void cannonball::stopTimer()
+{
+    timer.invalidate();
+}
+
 void cannonball::setCorner(int newCorner)
 {
     translateSpeed(newCorner);
     corner = newCorner;
 }
 
-bool cannonball::isBallInScene()
+/*bool cannonball::isBallInTarget(QRect target)
 {
-    if (position.x() >= 0 && position.x() <= 500
-            && position.y() >= 0 && position.y() <= 500)
-        return true;
-    return false;
-}
-
-bool cannonball::isBallInTarget(QRect target)
-{
-    /*if (position.x() <= target.bottomRight().x() && position.x() >= target.bottomLeft().x()
-        && position.y() <= target.bottomLeft().y() && position.y() >= target.topLeft().y())
-        return true;*/
     return target.contains(QPoint(position.x(), position.y()));
-}
+}*/
 
 void cannonball::speedUp()
 {
@@ -112,4 +105,9 @@ void cannonball::speedDown()
     translateSpeed(0);
     beginSpeed = QPoint(beginSpeed.x() - 3, beginSpeed.y() - 3);
     translateSpeed(2 * corner);
+}
+
+QPoint cannonball::getPosition()
+{
+    return position;
 }

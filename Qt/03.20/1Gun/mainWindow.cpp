@@ -61,16 +61,24 @@ void MainWindow::onShootClicked()
 {
     connect(&timer, &QTimer::timeout, this, &MainWindow::funcTimer);
     timer.start(10);
-
 }
 
 void MainWindow::funcTimer()
 {
+    qDebug() << ball->getPosition() << ui->graphicsView->frameRect();
     ball->setPos(0.0);
     scene->invalidate(ball->boundingRect());
-    if (ball->isBallInTarget(target->getPosition()))
+    if (target->getPosition().contains(ball->getPosition())
+        || !ui->graphicsView->frameRect().contains(ball->getPosition())/*ball->isBallInTarget(target->getPosition())*/)
     {
+        qDebug() << ui->graphicsView->frameRect();
         timer.stop();
+        ball->stopTimer();
+        if (target->getPosition().contains(ball->getPosition()))
+            scene->addSimpleText("YOU WIN!! CONGRATULATIONS!!!");
+        else
+            scene->addSimpleText("YOU LOSE!! LOSER!!!");
+
         return;
     }
 }
