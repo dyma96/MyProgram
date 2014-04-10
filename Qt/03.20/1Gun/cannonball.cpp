@@ -4,6 +4,7 @@
 #include <QTransform>
 #include <QRect>
 #include <QDebug>
+#include <math.h>
 
 cannonball::cannonball()
 {
@@ -29,27 +30,9 @@ cannonball::cannonball(double rad = 50, double speed = 20, double beginCorner = 
     corner = beginCorner;
 }
 
-void cannonball::translateSpeed(int newCorner)
-{
-    QTransform transformSpeed;
-    transformSpeed.rotate(corner - newCorner);
-    beginSpeed = transformSpeed.map(beginSpeed);
-    qDebug() << beginSpeed;
-}
-
 QRectF cannonball::boundingRect() const
 {
     return QRectF(0, 0, widthRect, heightRect);
-}
-
-void cannonball::translate(int height)
-{
-    transformation.reset();
-    transformation.translate(0, height - 1);
-    transformation.rotate(-corner);
-    transformation.translate(beginTranslation, 0);
-    transformation.rotate(-corner);
-    beginPosition = transformation.map(QPoint(0,0));
 }
 
 void cannonball::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
@@ -57,7 +40,6 @@ void cannonball::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
     if (!timer.isValid())
         return;
     translate(widget->height());
-//    painter->setTransform(transformation);
     painter->drawEllipse(QPoint(position.x(), position.y()) , radiusBall, radiusBall);
 }
 
@@ -68,7 +50,6 @@ void cannonball::setPos(double time)
         time = timer.elapsed() / 300.0;
     position.setX(beginSpeed.x() * time + beginPosition.x());
     position.setY(beginSpeed.y() * time + g.y() * time * time / 2.0 + beginPosition.y());
-    qDebug() << position;
 }
 
 void cannonball::startTimer()
@@ -88,26 +69,46 @@ void cannonball::setCorner(int newCorner)
     corner = newCorner;
 }
 
-/*bool cannonball::isBallInTarget(QRect target)
-{
-    return target.contains(QPoint(position.x(), position.y()));
-}*/
-
 void cannonball::speedUp()
 {
     translateSpeed(0);
-    beginSpeed = QPoint(beginSpeed.x() + 3, beginSpeed.y() + 3);
+    beginSpeed = QPoint(beginSpeed.x() + 3, beginSpeed.y());
     translateSpeed(2 * corner);
 }
 
 void cannonball::speedDown()
 {
     translateSpeed(0);
-    beginSpeed = QPoint(beginSpeed.x() - 3, beginSpeed.y() - 3);
+    beginSpeed = QPoint(beginSpeed.x() - 3, beginSpeed.y());
     translateSpeed(2 * corner);
 }
 
 QPoint cannonball::getPosition()
 {
     return position;
+}
+
+void cannonball::translate(int height)
+{
+    transformation.reset();
+    transformation.translate(0, height - 1);
+    transformation.rotate(-corner);
+    transformation.translate(beginTranslation, 0);
+    transformation.rotate(-corner);
+    beginPosition = transformation.map(QPoint(0,0));
+}
+
+void cannonball::translateSpeed(int newCorner)
+{
+    QTransform transformSpeed;
+    transformSpeed.rotate(corner - newCorner);
+    beginSpeed = transformSpeed.map(beginSpeed);
+    qDebug() << beginSpeed;
+}
+
+int cannonball::getSpeed()
+{
+    if (beginSpeed.x() <= 0 || beginSpeed.y() >= 0)
+        return 0;
+    return sqrt(beginSpeed.x() * beginSpeed.x() + beginSpeed.y() * beginSpeed.y());
 }

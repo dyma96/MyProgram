@@ -26,7 +26,6 @@ ovalGun::ovalGun(int rad, int width = 300, int height = 300)
 
 QRectF ovalGun::boundingRect() const
 {
-//    qDebug() << widthRect << heightRect;
     return QRectF(0, 0, widthRect, heightRect);
 }
 void ovalGun::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)

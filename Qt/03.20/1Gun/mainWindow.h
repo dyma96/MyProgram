@@ -3,6 +3,7 @@
 #include <QMainWindow>
 #include <QGraphicsView>
 #include <QTimer>
+#include <QGraphicsSimpleTextItem>
 #include "ovalGun.h"
 #include "cannonball.h"
 #include "targetClass.h"
@@ -32,10 +33,10 @@ private slots:
     /// Do, when timer 'timeout'.
     void funcTimer();
 
-    ///
+    /// Ball's peed down.
     void onPowerDownClicked();
 
-    ///
+    /// Ball's peed up.
     void onPowerUpClicked();
 
 private:
@@ -45,5 +46,6 @@ private:
     cannonball *ball;
     QTimer timer;
     targetClass *target;
+    QGraphicsSimpleTextItem *textResult;
 };
 

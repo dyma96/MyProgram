@@ -16,24 +16,17 @@ public:
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
-
     /// Set position with time.
     void setPos(double time);
 
     /// Start timer, if it's not start.
     void startTimer();
 
-    ///
+    /// Stop timer.
     void stopTimer();
 
     /// Set new corner.
     void setCorner(int newCorner);
-
-//    /// Return true if ball is in scene.
-//    bool isBallInScene();
-
-//    /// Return true if ball is in target.
-//    bool isBallInTarget(QRect target);
 
     /// Increase speed.
     void speedUp();
@@ -41,10 +34,18 @@ public:
     /// Reduce speed.
     void speedDown();
 
+    /// Return position ball.
     QPoint getPosition();
 
+    /// Return speed.
+    int getSpeed();
+
+
 private:
+    /// Translate beginPosition.
     void translate(int height);
+
+    /// Rotate speed.
     void translateSpeed(int newCorner);
 
     QPoint beginSpeed;

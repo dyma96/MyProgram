@@ -1,6 +1,7 @@
 #include "targetClass.h"
 #include <QPainter>
 #include <stdlib.h>
+#include <QDateTime>
 
 targetClass::targetClass()
 { }
@@ -10,7 +11,8 @@ targetClass::targetClass(int radiusTarget = 30, int widthRectTarget = 0, int hei
     radius = radiusTarget;
     widthRect = widthRectTarget;
     heightRect = heightRectTarget;
-    position = QPoint(200.0 + qrand() % 200, 60.0 + qrand() % 400);
+    qsrand(QDateTime::currentMSecsSinceEpoch());
+    position = QPoint(radius * 4 + qrand() % 400, radius * 2 + qrand() % 200);
 }
 
 QRectF targetClass::boundingRect() const
@@ -29,3 +31,8 @@ QRect targetClass::getPosition() const
                  position + QPoint(radius, radius));
 }
 
+void targetClass::changeTarget(int radiusTarget)
+{
+    radius = radiusTarget;
+    position = QPoint(radius * 4 + qrand() % 400, radius * 2 + qrand() % 200);
+}

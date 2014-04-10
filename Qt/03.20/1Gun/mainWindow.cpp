@@ -5,6 +5,7 @@
 #include <QGraphicsView>
 #include <QtCore/QDebug>
 #include <QTimer>
+#include <QProgressBar>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -26,13 +27,18 @@ MainWindow::MainWindow(QWidget *parent) :
     target = new targetClass(40, scene->width(), scene->height());
     scene->addItem(target);
 
+    textResult = new QGraphicsSimpleTextItem("GO!!");
+    scene->addItem(textResult);
+
     ui->graphicsView->setScene(scene);
+    ui->progressBarSpeed->setValue(ball->getSpeed());
 
     connect(ui->up, &QPushButton::clicked, this, &MainWindow::onUpClicked);
     connect(ui->down, &QPushButton::clicked, this, &MainWindow::onDownClicked);
     connect(ui->shoot, &QPushButton::clicked, this, &MainWindow::onShootClicked);
     connect(ui->powerDown, &QPushButton::clicked, this, &MainWindow::onPowerDownClicked);
     connect(ui->powerUp, &QPushButton::clicked, this, &MainWindow::onPowerUpClicked);
+    connect(&timer, &QTimer::timeout, this, &MainWindow::funcTimer);
 }
 
 MainWindow::~MainWindow()
@@ -41,6 +47,7 @@ MainWindow::~MainWindow()
     delete gun;
     delete ball;
     delete target;
+    delete scene;
 }
 
 void MainWindow::onUpClicked()
@@ -59,7 +66,6 @@ void MainWindow::onDownClicked()
 
 void MainWindow::onShootClicked()
 {
-    connect(&timer, &QTimer::timeout, this, &MainWindow::funcTimer);
     timer.start(10);
 }
 
@@ -75,9 +81,10 @@ void MainWindow::funcTimer()
         timer.stop();
         ball->stopTimer();
         if (target->getPosition().contains(ball->getPosition()))
-            scene->addSimpleText("YOU WIN!! CONGRATULATIONS!!!");
+            textResult->setText("YOU WIN!! CONGRATULATIONS!!!");
         else
-            scene->addSimpleText("YOU LOSE!! LOSER!!!");
+            textResult->setText("YOU LOSE!! LOSER!!!");
+        target->changeTarget(30);
 
         return;
     }
@@ -85,10 +92,16 @@ void MainWindow::funcTimer()
 
 void MainWindow::onPowerDownClicked()
 {
+    if (ball->getSpeed() < 1)
+        return;
     ball->speedDown();
+    ui->progressBarSpeed->setValue(ball->getSpeed());
 }
 
 void MainWindow::onPowerUpClicked()
 {
+    if (ball->getSpeed() > 99)
+        return;
     ball->speedUp();
+    ui->progressBarSpeed->setValue(ball->getSpeed());
 }
