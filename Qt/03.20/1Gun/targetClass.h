@@ -13,11 +13,14 @@ public:
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
-    /// Return ractangle
+    /// Return ractangle.
     QRect getPosition() const;
 
     /// Change radius and position target.
     void changeTarget(int radiusTarget);
+
+    /// Return radius.
+    int radiusTarget();
 
 private:
     int radius;

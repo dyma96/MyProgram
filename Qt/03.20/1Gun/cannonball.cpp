@@ -3,7 +3,6 @@
 #include <QTimer>
 #include <QTransform>
 #include <QRect>
-#include <QDebug>
 #include <math.h>
 
 cannonball::cannonball()
@@ -103,7 +102,6 @@ void cannonball::translateSpeed(int newCorner)
     QTransform transformSpeed;
     transformSpeed.rotate(corner - newCorner);
     beginSpeed = transformSpeed.map(beginSpeed);
-    qDebug() << beginSpeed;
 }
 
 int cannonball::getSpeed()

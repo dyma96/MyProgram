@@ -7,6 +7,7 @@
 #include "ovalGun.h"
 #include "cannonball.h"
 #include "targetClass.h"
+#include <QShortcut>
 
 namespace Ui {
 class MainWindow;
@@ -40,6 +41,9 @@ private slots:
     void onPowerUpClicked();
 
 private:
+    ///
+    void shortcutInitialize();
+
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     ovalGun *gun;
@@ -47,5 +51,11 @@ private:
     QTimer timer;
     targetClass *target;
     QGraphicsSimpleTextItem *textResult;
+
+    QShortcut *shortcutUp;
+    QShortcut *shortcutDown;
+    QShortcut *shortcutLeft;
+    QShortcut *shortcutRight;
+    QShortcut *shortcutPower;
 };
 

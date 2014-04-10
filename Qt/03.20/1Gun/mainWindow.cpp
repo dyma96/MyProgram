@@ -3,9 +3,9 @@
 #include <QPen>
 #include <QBrush>
 #include <QGraphicsView>
-#include <QtCore/QDebug>
 #include <QTimer>
 #include <QProgressBar>
+#include <QKeySequence>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -33,6 +33,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->graphicsView->setScene(scene);
     ui->progressBarSpeed->setValue(ball->getSpeed());
 
+    shortcutInitialize();
+
     connect(ui->up, &QPushButton::clicked, this, &MainWindow::onUpClicked);
     connect(ui->down, &QPushButton::clicked, this, &MainWindow::onDownClicked);
     connect(ui->shoot, &QPushButton::clicked, this, &MainWindow::onShootClicked);
@@ -44,10 +46,30 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
-    delete gun;
-    delete ball;
-    delete target;
     delete scene;
+    delete shortcutDown;
+    delete shortcutUp;
+    delete shortcutLeft;
+    delete shortcutRight;
+    delete shortcutPower;
+}
+
+void MainWindow::shortcutInitialize()
+{
+    shortcutLeft = new QShortcut(QKeySequence(QKeySequence::MoveToPreviousChar), this);
+    shortcutLeft->connect(shortcutLeft,SIGNAL(activated()),this,SLOT(onPowerDownClicked()));
+
+    shortcutRight = new QShortcut(QKeySequence(QKeySequence::MoveToNextChar), this);
+    shortcutRight->connect(shortcutRight,SIGNAL(activated()),this,SLOT(onPowerUpClicked()));
+
+    shortcutDown = new QShortcut(QKeySequence(QKeySequence::MoveToNextLine), this);
+    shortcutDown->connect(shortcutDown,SIGNAL(activated()),this,SLOT(onDownClicked()));
+
+    shortcutUp = new QShortcut(QKeySequence(QKeySequence::MoveToPreviousLine), this);
+    shortcutUp->connect(shortcutUp, SIGNAL(activated()), this, SLOT(onUpClicked()));
+
+    shortcutPower = new QShortcut(QKeySequence(QKeySequence::InsertParagraphSeparator), this);
+    shortcutPower->connect(shortcutPower,SIGNAL(activated()),this,SLOT(onShootClicked()));
 }
 
 void MainWindow::onUpClicked()
@@ -71,21 +93,23 @@ void MainWindow::onShootClicked()
 
 void MainWindow::funcTimer()
 {
-    qDebug() << ball->getPosition() << ui->graphicsView->frameRect();
     ball->setPos(0.0);
     scene->invalidate(ball->boundingRect());
     if (target->getPosition().contains(ball->getPosition())
         || !ui->graphicsView->frameRect().contains(ball->getPosition())/*ball->isBallInTarget(target->getPosition())*/)
     {
-        qDebug() << ui->graphicsView->frameRect();
         timer.stop();
         ball->stopTimer();
         if (target->getPosition().contains(ball->getPosition()))
+        {
             textResult->setText("YOU WIN!! CONGRATULATIONS!!!");
+            target->changeTarget(target->radiusTarget() - 1);
+        }
         else
+        {
             textResult->setText("YOU LOSE!! LOSER!!!");
-        target->changeTarget(30);
-
+            target->changeTarget(target->radiusTarget());
+        }
         return;
     }
 }

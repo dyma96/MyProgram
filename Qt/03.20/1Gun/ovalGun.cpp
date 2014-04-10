@@ -2,7 +2,6 @@
 #include <QTransform>
 #include <QColor>
 #include <QWidget>
-#include <QDebug>
 
 ovalGun::ovalGun()
 {

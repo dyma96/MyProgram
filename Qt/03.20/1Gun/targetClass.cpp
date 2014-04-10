@@ -33,6 +33,12 @@ QRect targetClass::getPosition() const
 
 void targetClass::changeTarget(int radiusTarget)
 {
-    radius = radiusTarget;
+    if (radiusTarget > 8)
+        radius = radiusTarget;
     position = QPoint(radius * 4 + qrand() % 400, radius * 2 + qrand() % 200);
+}
+
+int targetClass::radiusTarget()
+{
+    return radius;
 }
